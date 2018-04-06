@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE RootStep>
+<RootStep id="_0" name="root" version="4.1.3">
+  <include>qfs.qft</include>
+  <reference>qfs.qft</reference>
+  <TestSet id="_1" name="Popular Stores Tab">
+    <SetupSequence id="_9" name="Open web page in a browser">
+      <BasicSequence id="_A" name="Set global variables">
+        <SetGlobalStep id="_B" varname="client">
+          <default>intuWeb</default>
+        </SetGlobalStep>
+        <SetGlobalStep id="_C" varname="browser">
+          <default>chrome</default>
+        </SetGlobalStep>
+        <SetGlobalStep id="_D" varname="browserdir">
+          <default>C:\Program Files (x86)\Google\Chrome\Application</default>
+        </SetGlobalStep>
+      </BasicSequence>
+      <BasicSequence id="_E" name="Start browser without window">
+        <BrowserClientStarter browser="$(browser)" client="$(client)"
+                              executable="${qftest:java}" id="_F"
+                              mozhome="$(browserdir)" openwindow="false"/>
+        <ClientWaiter client="$(client)" id="_G"/>
+      </BasicSequence>
+      <BasicSequence id="_H" name="Perform browser settings">
+        <ProcedureCall id="_I"
+                       procedure="qfs.qft#qfs.web.browser.settings.doStartupSettings">
+          <variable name="client">$(client)</variable>
+          <variable name="browser">$(browser)</variable>
+          <variable name="mozhome">$(browserdir)</variable>
+          <variable name="emptyCache">true</variable>
+          <variable name="enableCookies">true</variable>
+          <variable name="deleteCookies">true</variable>
+          <variable name="locale">en</variable>
+          <variable name="enableProxy">false</variable>
+          <variable name="proxyAddress"/>
+          <variable name="proxyPort"/>
+          <variable name="proxyAutoconfigurl"/>
+          <variable name="enableProxyBypass">false</variable>
+          <variable name="proxyBypass"/>
+          <variable name="mozprofile"/>
+          <variable name="compatibilitymode">no</variable>
+        </ProcedureCall>
+      </BasicSequence>
+      <BasicSequence id="_J" name="Open browser window with URL">
+        <BrowserClientStarter browser="$(browser)" client="$(client)"
+                              executable="${qftest:java}" id="_K"
+                              openwindow="true" url="http://uat.intu.co.uk"/>
+        <DocumentWaiter client="$(client)" component="genericDocument" id="_L"
+                        timeout="60000"/>
+      </BasicSequence>
+      <BasicSequence id="_M" name="Install CustomWebResolver">
+        <ProcedureCall id="_N"
+                       procedure="qfs.qft#qfs.web.ajax.installCustomWebResolver">
+          <variable name="client">$(client)</variable>
+          <variable name="resolver">autodetect</variable>
+          <variable name="version"/>
+          <variable name="genericClasses"/>
+          <variable name="attributesToGenericClasses"/>
+          <variable name="tagsToGenericClasses"/>
+          <variable name="ignoreTags"/>
+          <variable name="ignoreByAttributes"/>
+          <variable name="autoIdPatterns"/>
+          <variable name="customIdAttributes"/>
+          <variable name="interestingByAttributes"/>
+          <variable name="attributesToQftFeature"/>
+          <variable name="documentJS"/>
+          <variable name="auto_extjs_version">3</variable>
+          <variable name="auto_gwt_version">2</variable>
+          <variable name="auto_icefaces_version">1</variable>
+          <variable name="auto_jqueryui_version">1</variable>
+          <variable name="auto_jeasyui_version">1</variable>
+          <variable name="auto_kendoui_version">1</variable>
+          <variable name="auto_primefaces_version">2</variable>
+          <variable name="auto_rap_version">3</variable>
+          <variable name="auto_richfaces_version">3</variable>
+          <variable name="auto_vaadin_version">2</variable>
+          <variable name="auto_zk_version">1</variable>
+        </ProcedureCall>
+      </BasicSequence>
+    </SetupSequence>
+    <TestCase id="_2"
+              name="SP-233:Popular Stores at the centre are limited to 8 max in the Store Hub"
+              reportname="233:Popular Stores at the centre are limited to 8 max in the Store Hub"/>
+    <TestCase id="_6"
+              name="SP-225:Two visible tabs in stores hub page for available Popular stores at the centre"
+              reportname="SP-225:Two visible tabs in stores hub page for available Popular stores at the centre"/>
+    <TestCase id="_7"
+              name="SP-226:Unvisible tabs in the Stores hub without Popular stores available at the centre"
+              reportname="SP-226:Unvisible tabs in the Stores hub without Popular stores available at the centre"/>
+    <TestCase id="_8"
+              name="SP-236:Display a list of of Popular stores and All stores when JavaScript is disabled"
+              reportname="SP-236:Display a list of of Popular stores and All stores when JavaScript is disabled"/>
+    <CleanupSequence id="_37">
+      <ProcedureCall id="_3DR" procedure="closeBrowser"/>
+    </CleanupSequence>
+  </TestSet>
+  <PackageRoot id="_3">
+    <Procedure id="_38" name="closeBrowser">
+      <TryStep id="_39" name="browserTerminate">
+        <ClientWaiter client="$(client)" id="_3DI" timeout="500"/>
+        <WindowEventStep client="$(client)" component="uat.intu.co.uk"
+                         event="WINDOW_CLOSING" id="_3DK"/>
+        <TryStep id="_3DL" name="wait for termination">
+          <ProcessWaiter client="$(client)" id="_3DM"/>
+          <CatchSequence exception="TestException" id="_3DN" maxerror="0"
+                         name="checkBrowserClosed">
+            <ClientStopper client="$(client)" id="_3DO"/>
+            <ProcessWaiter client="$(client)" id="_3DP"/>
+          </CatchSequence>
+        </TryStep>
+        <CatchSequence exception="ClientNotTerminatedException" id="_3DQ"
+                       maxerror="0"/>
+      </TryStep>
+    </Procedure>
+  </PackageRoot>
+  <ExtraSequence id="_4"/>
+  <WindowList id="_5">
+    <WebPageStep class="Window" feature="uat.intu.co.uk" height="3554"
+                 id="uat.intu.co.uk" uid="_3DS" width="1024">
+      <extrafeature name="baseurl" negate="false" regexp="false" state="0">http://uat.intu.co.uk/</extrafeature>
+      <extrafeature name="qfs:class" negate="false" regexp="false" state="0">DOCUMENT</extrafeature>
+      <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                    state="0">Window</extrafeature>
+      <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                    state="0">DOCUMENT</extrafeature>
+      <extrafeature name="title" negate="false" regexp="false" state="0">Shop with us: intu Shopping Centres &amp; intu Online Shopping</extrafeature>
+      <extrafeature name="url" negate="false" regexp="false" state="0">http://uat.intu.co.uk/</extrafeature>
+      <ComponentStep class="HTML" classcount="1" classindex="0"
+                     id="uat.intu.co.uk.html" uid="_3DT">
+        <extrafeature name="class" negate="false" regexp="false" state="0">js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths</extrafeature>
+        <extrafeature name="qfs:class" negate="false" regexp="false"
+                      state="0">HTML</extrafeature>
+        <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                      state="0">HTML</extrafeature>
+        <extrafeature name="tag" negate="false" regexp="false" state="0">HTML</extrafeature>
+        <ComponentStep class="BODY" classcount="1" classindex="0"
+                       id="uat.intu.co.uk.body" uid="_3DU">
+          <extrafeature name="class" negate="false" regexp="false" state="0">no-border</extrafeature>
+          <extrafeature name="qfs:class" negate="false" regexp="false"
+                        state="0">BODY</extrafeature>
+          <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                        state="0">BODY</extrafeature>
+          <extrafeature name="tag" negate="false" regexp="false" state="0">BODY</extrafeature>
+          <ComponentStep class="NAV" classcount="1" classindex="0" height="60"
+                         id="uat.intu.co.uk.nav" uid="_3DV" width="1024" x="0"
+                         y="0">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">top-bar</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">NAV</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">NAV</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">NAV</extrafeature>
+            <ComponentStep class="UL" classcount="1" classindex="0"
+                           height="70" id="uat.intu.co.uk.ul" uid="_3DW"
+                           width="161" x="0" y="0">
+              <extrafeature name="class" negate="false" regexp="false"
+                            state="0">title-area</extrafeature>
+              <extrafeature name="qfs:class" negate="false" regexp="false"
+                            state="0">UL</extrafeature>
+              <extrafeature name="qfs:systemclass" negate="false"
+                            regexp="false" state="0">UL</extrafeature>
+              <extrafeature name="tag" negate="false" regexp="false"
+                            state="0">UL</extrafeature>
+              <ComponentStep class="LI" classcount="3" classindex="0"
+                             height="64" id="uat.intu.co.uk.liIntu" uid="_3DX"
+                             width="161" x="0" y="6">
+                <extrafeature name="class" negate="false" regexp="false"
+                              state="0">top-bar__name--centered</extrafeature>
+                <extrafeature name="qfs:class" negate="false" regexp="false"
+                              state="0">LI</extrafeature>
+                <extrafeature name="qfs:label" negate="false" regexp="false"
+                              state="1">intu</extrafeature>
+                <extrafeature name="qfs:systemclass" negate="false"
+                              regexp="false" state="0">LI</extrafeature>
+                <extrafeature name="tag" negate="false" regexp="false"
+                              state="0">LI</extrafeature>
+                <ComponentStep class="Link" classcount="1" classindex="0"
+                               feature="intu" height="64" id="linkIntu"
+                               uid="_3DY" width="146" x="15" y="0">
+                  <extrafeature name="class" negate="false" regexp="false"
+                                state="0">top-bar__logo</extrafeature>
+                  <extrafeature name="href" negate="false" regexp="false"
+                                state="0">http://uat.intu.co.uk/</extrafeature>
+                  <extrafeature name="qfs:class" negate="false" regexp="false"
+                                state="0">A</extrafeature>
+                  <extrafeature name="qfs:genericclass" negate="false"
+                                regexp="false" state="0">Link</extrafeature>
+                  <extrafeature name="qfs:label" negate="false" regexp="false"
+                                state="1">intu</extrafeature>
+                  <extrafeature name="qfs:systemclass" negate="false"
+                                regexp="false" state="0">A</extrafeature>
+                  <extrafeature name="tag" negate="false" regexp="false"
+                                state="0">A</extrafeature>
+                </ComponentStep>
+              </ComponentStep>
+            </ComponentStep>
+          </ComponentStep>
+        </ComponentStep>
+      </ComponentStep>
+    </WebPageStep>
+  </WindowList>
+</RootStep>

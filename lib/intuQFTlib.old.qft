@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE RootStep>
+<RootStep id="_0" name="root" version="4.1.4">
+  <include>qfs.qft</include>
+  <PackageRoot id="intuQFTlib" uid="_3">
+    <Package id="_1m+o" name="home">
+      <Procedure id="_1lul" name="Resize window">
+        <ComponentEventStep client="$(client)" component="staging.intu.co.uk"
+                            event="COMPONENT_RESIZED" id="_3DY" param1="1268"
+                            param2="670">
+          <comment>Resizes the browser window to 1268 x 670</comment>
+        </ComponentEventStep>
+      </Procedure>
+      <Procedure id="_1mOM" name="Cookie's alert box is displayed">
+        <CheckBooleanStep checktype="visible" client="$(client)"
+                          component="staging.intu.co.uk.div31" id="_1mQf">
+          <comment>Checking the cookie alert box is displayed</comment>
+        </CheckBooleanStep>
+      </Procedure>
+    </Package>
+    <Package id="_1m+n" name="body">
+      <Procedure id="_1lXe" name="Featured blocks are displayed">
+        <CheckBooleanStep checktype="visible" client="$(client)"
+                          component="staging.intu.co.uk.div2" id="_1mJf">
+          <comment>Check block 1 is displayed</comment>
+        </CheckBooleanStep>
+        <CheckBooleanStep checktype="visible" client="$(client)"
+                          component="staging.intu.co.uk.div3" id="_1mJg">
+          <comment>Check block 2 is displayed</comment>
+        </CheckBooleanStep>
+        <CheckBooleanStep checktype="visible" client="$(client)"
+                          component="staging.intu.co.uk.div4" id="_1mJh">
+          <comment>Check block 3 is displayed</comment>
+        </CheckBooleanStep>
+        <CheckBooleanStep checktype="visible" client="$(client)"
+                          component="staging.intu.co.uk.div5" id="_1mJi">
+          <comment>Check block 4 is displayed</comment>
+        </CheckBooleanStep>
+        <CheckBooleanStep checktype="visible" client="$(client)"
+                          component="staging.intu.co.uk.div6" id="_1mJj">
+          <comment>Check block 5 is displayed</comment>
+        </CheckBooleanStep>
+        <CheckBooleanStep checktype="visible" client="$(client)"
+                          component="staging.intu.co.uk.div7" id="_1mJk">
+          <comment>Check block 6 is displayed</comment>
+        </CheckBooleanStep>
+        <CheckBooleanStep checktype="visible" client="$(client)"
+                          component="staging.intu.co.uk.div8" id="_1mJl">
+          <comment>Check block 7 is displayed</comment>
+        </CheckBooleanStep>
+        <CheckBooleanStep checktype="visible" client="$(client)"
+                          component="staging.intu.co.uk.div9" id="_1mJm">
+          <comment>Check block 8 is displayed</comment>
+        </CheckBooleanStep>
+        <CheckBooleanStep checktype="visible" client="$(client)"
+                          component="staging.intu.co.uk.div10" id="_1mJn">
+          <comment>Check block 9 is displayed</comment>
+        </CheckBooleanStep>
+      </Procedure>
+      <Procedure id="_1lXf" name="Trending component is displayed">
+        <CheckBooleanStep checktype="visible" client="$(client)"
+                          component="staging.intu.co.uk.section3" id="_1mJs">
+          <comment>Check trending topic component is displayed</comment>
+        </CheckBooleanStep>
+        <CheckBooleanStep checktype="visible" client="$(client)"
+                          component="staging.intu.co.uk.section4" id="_1mJw">
+          <comment>Check trending description component is displayed</comment>
+        </CheckBooleanStep>
+        <CheckStringStep client="$(client)" component="h2Trending" id="_1mK7">
+          <text>Trending</text>
+          <comment>Check carousel heading is displayed</comment>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)" component="staging.intu.co.uk.p"
+                         id="_1mK8">
+          <text>What's hot at intu.co.uk</text>
+          <comment>Check carousel sub heading is displayed</comment>
+        </CheckStringStep>
+        <CheckBooleanStep checktype="visible" client="$(client)"
+                          component="buttonPrevious" id="_1mK9">
+          <comment>Check left arrow in the carousel is displayed</comment>
+        </CheckBooleanStep>
+        <CheckBooleanStep checktype="visible" client="$(client)"
+                          component="buttonNext" id="_1mKA">
+          <comment>Check right arrow in the carousel is displayed</comment>
+        </CheckBooleanStep>
+        <CheckBooleanStep checktype="visible" client="$(client)"
+                          component="staging.intu.co.uk.div11" id="_1mKB">
+          <comment>Check the tredning carousel is displayed</comment>
+        </CheckBooleanStep>
+      </Procedure>
+      <Procedure id="_1lXg" name="intu Shopping Centres is Displayed">
+        <CheckStringStep client="$(client)"
+                         component="staging.intu.co.uk.div12" id="_1mMp">
+          <text>intu Shopping Centres
+A lot of places to eat, play, shop and have fun</text>
+          <comment>Check the heading and sub heading are displayed</comment>
+        </CheckStringStep>
+        <CheckBooleanStep checktype="visible" client="$(client)"
+                          component="imgIntu_Braehead" id="_1mL1">
+          <comment>Check intu Braehead image is displayed</comment>
+        </CheckBooleanStep>
+        <CheckStringStep client="$(client)" component="linkIntu_Braehead"
+                         id="_1mL2">
+          <text>intu Braehead</text>
+          <comment>Check intu Braehead text is displayed</comment>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)"
+                         component="linkIntu.co.uk/braehead" id="_1mL3">
+          <text>intu.co.uk/braehead</text>
+          <comment>Check intu Braehead url is displayed</comment>
+        </CheckStringStep>
+        <CheckBooleanStep checktype="visible" client="$(client)"
+                          component="imgIntu_Broadmarsh" id="_1mL4">
+          <comment>Check intu Broadmarsh image is displayed</comment>
+        </CheckBooleanStep>
+        <CheckStringStep client="$(client)" component="linkIntu_Broadmarsh"
+                         id="_1mL5">
+          <text>intu Broadmarsh</text>
+          <comment>Check intu Broadmarsh text is displayed</comment>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)"
+                         component="linkIntu.co.uk/broadmarsh" id="_1mL6">
+          <text>intu.co.uk/broadmarsh</text>
+          <comment>Check intu Broadmarsh url is displayed</comment>
+        </CheckStringStep>
+        <CheckBooleanStep checktype="visible" client="$(client)"
+                          component="imgIntu_Chapelfield" id="_1mL7">
+          <comment>Check intu Chapelfield image is displayed</comment>
+        </CheckBooleanStep>
+        <CheckStringStep client="$(client)" component="linkIntu_Chapelfield"
+                         id="_1mL8">
+          <text>intu Chapelfield</text>
+          <comment>Check intu Chapelfield text is displayed</comment>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)"
+                         component="linkIntu.co.uk/chapelfield" id="_1mL9">
+          <text>intu.co.uk/chapelfield</text>
+          <comment>Check intu Chapelfield url is displayed</comment>
+        </CheckStringStep>
+        <CheckBooleanStep checktype="visible" client="$(client)"
+                          component="imgIntu_Derby" id="_1mLA">
+          <comment>Check intu Derby image is displayed</comment>
+        </CheckBooleanStep>
+        <CheckStringStep client="$(client)" component="linkIntu_Derby"
+                         id="_1mLB">
+          <text>intu Derby</text>
+          <comment>Check intu Derby text is displayed</comment>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)" component="linkIntu.co.uk/derby"
+                         id="_1mLC">
+          <text>intu.co.uk/derby</text>
+          <comment>Check intu Derby url is displayed</comment>
+        </CheckStringStep>
+        <CheckBooleanStep checktype="visible" client="$(client)"
+                          component="imgIntu_Eldon_Square" id="_1mLD">
+          <comment>Check intu Eldon Square image is displayed</comment>
+        </CheckBooleanStep>
+        <CheckStringStep client="$(client)" component="linkIntu_Eldon_Square"
+                         id="_1mLE">
+          <text>intu Eldon Square</text>
+          <comment>Check intu Eldon Square text is displayed</comment>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)"
+                         component="linkIntu.co.uk/eldonsquare" id="_1mLF">
+          <text>intu.co.uk/eldonsquare</text>
+          <comment>Check intu Eldon Square url is displayed</comment>
+        </CheckStringStep>
+        <CheckBooleanStep checktype="visible" client="$(client)"
+                          component="imgIntu_Lakeside" id="_1mLG">
+          <comment>Check intu Lakeside image is displayed</comment>
+        </CheckBooleanStep>
+        <CheckStringStep client="$(client)" component="linkIntu_Lakeside"
+                         id="_1mLH">
+          <text>intu Lakeside</text>
+          <comment>Check intu Lakeside text is displayed</comment>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)"
+                         component="linkIntu.co.uk/lakeside" id="_1mLI">
+          <text>intu.co.uk/lakeside</text>
+          <comment>Check intu Lakeside url is displayed</comment>
+        </CheckStringStep>
+        <CheckBooleanStep checktype="visible" client="$(client)"
+                          component="imgIntu_Merryhill" id="_1mM5">
+          <comment>Check intu Merryhill image is displayed</comment>
+        </CheckBooleanStep>
+        <CheckStringStep client="$(client)" component="linkIntu_Merry_Hill"
+                         id="_1mM6">
+          <text>intu Merry Hill</text>
+          <comment>Check intu Merryhill text is displayed</comment>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)"
+                         component="linkIntu.co.uk/merryhill" id="_1mM7">
+          <text>intu.co.uk/merryhill</text>
+          <comment>Check intu Merryhill url is displayed</comment>
+        </CheckStringStep>
+        <CheckBooleanStep checktype="visible" client="$(client)"
+                          component="imgIntu_Metrocentre" id="_1mM8">
+          <comment>Check intu Braehead image is displayed</comment>
+        </CheckBooleanStep>
+        <CheckStringStep client="$(client)" component="linkIntu_Metrocentre"
+                         id="_1mM9">
+          <text>intu Metrocentre</text>
+          <comment>Check intu Metrocentre text is displayed</comment>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)"
+                         component="linkIntu.co.uk/metrocentre" id="_1mMA">
+          <text>intu.co.uk/metrocentre</text>
+          <comment>Check intu Metrocentre url is displayed</comment>
+        </CheckStringStep>
+        <CheckBooleanStep checktype="visible" client="$(client)"
+                          component="imgIntu_Milton_Keynes" id="_1mMB">
+          <comment>Check intu Milton Keynes image is displayed</comment>
+        </CheckBooleanStep>
+        <CheckStringStep client="$(client)" component="linkIntu_Milton_Keynes"
+                         id="_1mMC">
+          <text>intu Milton Keynes</text>
+          <comment>Check intu Milton Keynes text is displayed</comment>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)"
+                         component="linkIntu.co.uk/miltonkeynes" id="_1mMD">
+          <text>intu.co.uk/miltonkeynes</text>
+          <comment>Check intu Milton Keynes url is displayed</comment>
+        </CheckStringStep>
+        <CheckBooleanStep checktype="visible" client="$(client)"
+                          component="imgIntu_Potteries" id="_1mME">
+          <comment>Check intu Potteries image is displayed</comment>
+        </CheckBooleanStep>
+        <CheckStringStep client="$(client)" component="linkIntu_Potteries"
+                         id="_1mMF">
+          <text>intu Potteries</text>
+          <comment>Check intu Potteries text is displayed</comment>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)"
+                         component="linkIntu.co.uk/potteries" id="_1mMG">
+          <text>intu.co.uk/potteries</text>
+          <comment>Check intu Potteries url is displayed</comment>
+        </CheckStringStep>
+        <CheckBooleanStep checktype="visible" client="$(client)"
+                          component="imgIntu_Trafford_Centre" id="_1mMH">
+          <comment>Check intu Trafford image is displayed</comment>
+        </CheckBooleanStep>
+        <CheckStringStep client="$(client)"
+                         component="linkIntu_Trafford_Centre" id="_1mMI">
+          <text>intu Trafford Centre</text>
+          <comment>Check intu Trafford text is displayed</comment>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)"
+                         component="linkIntu.co.uk/traffordcentre" id="_1mMJ">
+          <text>intu.co.uk/traffordcentre</text>
+          <comment>Check intu Trafford url is displayed</comment>
+        </CheckStringStep>
+        <CheckBooleanStep checktype="visible" client="$(client)"
+                          component="imgIntu_Uxbridge" id="_1mMK">
+          <comment>Check intu Uxbridge image is displayed</comment>
+        </CheckBooleanStep>
+        <CheckStringStep client="$(client)" component="linkIntu_Uxbridge"
+                         id="_1mML">
+          <text>intu Uxbridge</text>
+          <comment>Check intu Uxbridge text is displayed</comment>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)"
+                         component="linkIntu.co.uk/uxbridge" id="_1mMM">
+          <text>intu.co.uk/uxbridge</text>
+          <comment>Check intu Uxbridge url is displayed</comment>
+        </CheckStringStep>
+        <CheckBooleanStep checktype="visible" client="$(client)"
+                          component="imgIntu_Victoria_Centre" id="_1mMg">
+          <comment>Check intu Victoria image is displayed</comment>
+        </CheckBooleanStep>
+        <CheckStringStep client="$(client)"
+                         component="linkIntu_Victoria_Centre" id="_1mMh">
+          <text>intu Victoria Centre</text>
+          <comment>Check intu Victoria text is displayed</comment>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)"
+                         component="linkIntu.co.uk/victoriacentre" id="_1mMi">
+          <text>intu.co.uk/victoriacentre</text>
+          <comment>Check intu Victoria url is displayed</comment>
+        </CheckStringStep>
+        <CheckBooleanStep checktype="visible" client="$(client)"
+                          component="imgIntu_Watford" id="_1mMj">
+          <comment>Check intu Watford image is displayed</comment>
+        </CheckBooleanStep>
+        <CheckStringStep client="$(client)" component="linkIntu_Watford"
+                         id="_1mMk">
+          <text>intu Watford</text>
+          <comment>Check intu Watford text is displayed</comment>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)" component="linkIntu.co.uk/watford"
+                         id="_1mMl">
+          <text>intu.co.uk/watford</text>
+          <comment>Check intu Watford url is displayed</comment>
+        </CheckStringStep>
+      </Procedure>
+    </Package>
+    <Package id="_1m+m" name="footer">
+      <Procedure id="_1lXi" name="Global footer is displayed">
+        <CheckBooleanStep checktype="visible" client="$(client)"
+                          component="staging.intu.co.uk.div16" id="_1mNo">
+          <comment>Check the first block of the global footer is displayed</comment>
+        </CheckBooleanStep>
+        <CheckStringStep client="$(client)"
+                         component="staging.intu.co.uk.div16" id="_1mNp">
+          <text>Help
+Accessibility
+Website enquiries
+Claims Portal</text>
+          <comment>Check the link in the first block of the global footer is correct</comment>
+        </CheckStringStep>
+        <CheckBooleanStep checktype="visible" client="$(client)"
+                          component="staging.intu.co.uk.div17" id="_1mNq">
+          <comment>Check the second block of the global footer is displayed</comment>
+        </CheckBooleanStep>
+        <CheckStringStep client="$(client)"
+                         component="staging.intu.co.uk.div17" id="_1mNr">
+          <text>Site policies
+Cookies Policy
+Terms &amp; Conditions
+Privacy Policy</text>
+          <comment>Check the link in the second block of the global footer is correct</comment>
+        </CheckStringStep>
+        <CheckBooleanStep checktype="visible" client="$(client)"
+                          component="staging.intu.co.uk.div18" id="_1mNs">
+          <comment>Check the third block of the global footer is displayed</comment>
+        </CheckBooleanStep>
+        <CheckStringStep client="$(client)"
+                         component="staging.intu.co.uk.div18" id="_1mNt">
+          <text>intu Group
+Group website
+Corporate responsibility</text>
+          <comment>Check the link in the third block of the global footer is correct</comment>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)"
+                         component="staging.intu.co.uk.div19" id="_1mNu">
+          <text>Copyright © 2017 intu Properties plc. All rights reserved.
+Company Registration Number 3685527. Registered Office: 40 Broadway | London | SW1H 0BU</text>
+          <comment>Check the below footer copy is present:
+
+Copyright © 2017 intu Properties plc. All rights reserved.
+Company Registration Number 3685527. Registered Office: 40 Broadway | London | SW1H 0BU</comment>
+        </CheckStringStep>
+        <CheckBooleanStep checktype="visible" client="$(client)"
+                          component="imgIntu-logo-2x" id="_1mNv">
+          <comment>Check the footer logo is displayed</comment>
+        </CheckBooleanStep>
+        <CheckBooleanStep checktype="visible" client="$(client)"
+                          component="staging.intu.co.uk.section8" id="_1mNw">
+          <comment>Check the global footer component is displayed</comment>
+        </CheckBooleanStep>
+      </Procedure>
+      <Procedure id="_1mZ7" name="The Secondary Footer is displayed">
+        <CheckStringStep client="$(client)" component="linkWomen2" id="_1mml">
+          <text>Women</text>
+          <comment>Check 'Women' is displayed</comment>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)" component="linkMen3" id="_1mmm">
+          <text>Men</text>
+          <comment>Check 'Men' is displayed</comment>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)" component="linkChildren"
+                         id="_1mmn">
+          <text>Children</text>
+          <comment>Check 'Children' is displayed</comment>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)" component="linkSports___Leisure2"
+                         id="_1mmo">
+          <text>Sports &amp; Leisure</text>
+          <comment>Check 'Sports &amp; Leisure' is displayed</comment>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)" component="linkHomeware"
+                         id="_1mmp">
+          <text>Homeware</text>
+          <comment>Check 'Homeware' is displayed</comment>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)" component="linkGifts2" id="_1mmq">
+          <text>Gifts</text>
+          <comment>Check 'Gifts' is displayed</comment>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)" component="linkElectricals"
+                         id="_1mmr">
+          <text>Electricals</text>
+          <comment>Check 'Electricals' is displayed</comment>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)" component="linkStores_A-Z"
+                         id="_1mms">
+          <text>Stores A-Z</text>
+          <comment>Check 'Stores A-Z' is displayed</comment>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)" component="linkBrands_A-Z"
+                         id="_1mmt">
+          <text>Brands A-Z</text>
+          <comment>Check 'Brands A-Z' is displayed</comment>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)" component="linkAbout_us"
+                         id="_1mmu">
+          <text>About us</text>
+          <comment>Check 'About us' is displayed</comment>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)" component="linkFAQs" id="_1mmv">
+          <text>FAQs</text>
+          <comment>Check 'FAQs' is displayed</comment>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)" component="linkContact_us3"
+                         id="_1mmw">
+          <text>Contact us</text>
+          <comment>Check 'Contact us' is displayed</comment>
+        </CheckStringStep>
+      </Procedure>
+    </Package>
+    <Package id="_1m+l" name="header">
+      <Procedure id="_1lXc" name="Global navigation is displayed">
+        <CheckBooleanStep checktype="visible" client="$(client)"
+                          component="staging.intu.co.uk.ul3" id="_1mI+">
+          <comment>Check global navigation is displayed</comment>
+        </CheckBooleanStep>
+        <CheckStringStep client="$(client)" component="linkShop_online"
+                         id="_1mI-">
+          <text>shop online</text>
+          <comment>Check Shop online menu is displayed</comment>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)" component="linkShopping_centres"
+                         id="_1mJ0">
+          <text>shopping centres</text>
+          <comment>Check Shopping centres menu is displayed</comment>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)" component="linkShop_insider"
+                         id="_1mJ1">
+          <text>shop insider</text>
+          <comment>Check Shop insider menu is displayed</comment>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)" component="linkOffers" id="_1mJ2">
+          <text>Offers</text>
+          <comment>Check Offers menu is displayed</comment>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)" component="linkSpring_fashion"
+                         id="_1mJ3">
+          <text>spring fashion</text>
+          <comment>Check Spring fashion menu is displayed</comment>
+        </CheckStringStep>
+      </Procedure>
+      <Procedure id="_1lXd" name="Global search field is displayed">
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="search-query&amp;0" event="MOUSE_MPRC"
+                        id="_1mJB" modifiers="16">
+          <comment>Check global search field is present</comment>
+        </MouseEventStep>
+      </Procedure>
+      <Procedure id="_1m+e" name="intu logo is displayed">
+        <CheckBooleanStep checktype="visible" client="$(client)"
+                          component="linkIntu" id="_1m+f">
+          <comment>Checking intu logo is visible</comment>
+        </CheckBooleanStep>
+      </Procedure>
+      <Procedure id="_1lXZ" name="Sign In / Register is displayed">
+        <CheckBooleanStep checktype="visible" client="$(client)"
+                          component="linkSign_In_/_Register" id="_1lXY">
+          <comment>Checking the sign in / register link is visible</comment>
+        </CheckBooleanStep>
+        <CheckStringStep client="$(client)" component="linkSign_In_/_Register"
+                         id="_1lXW">
+          <text>Sign In / Register</text>
+          <comment>Check the correct text is present</comment>
+        </CheckStringStep>
+      </Procedure>
+      <Procedure id="_1lXN" name="Select intu logo">
+        <MouseEventStep clicks="1" client="$(client)" component="linkIntu"
+                        event="MOUSE_MPRC" id="_1m+j" modifiers="16">
+          <comment>Click the intu logo to redirect to the home page.</comment>
+        </MouseEventStep>
+        <DocumentWaiter client="$(client)" component="staging.intu.co.uk"
+                        id="_1m+k" timeout="60000"/>
+      </Procedure>
+    </Package>
+  </PackageRoot>
+  <ExtraSequence id="_4"/>
+  <WindowList id="_5"/>
+</RootStep>

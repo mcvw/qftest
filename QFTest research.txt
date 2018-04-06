@@ -1,0 +1,12 @@
+https://www.qfs.de/en/qf-test-support/training-consulting.html
+
+https://www.qfs.de/en/qf-test-mailing-list-archive-2015/lc/2015-msg00071.html
+
+https://www.qfs.de/en/qf-test/web-testing/test-automation-selenium-vs-qf-test.html
+
+https://www.quora.com/What-are-the-differences-between-the-Selenium-test-tool-and-QF-test-tool
+
+https://www.testtoolreview.de/en/testtool-overview/tool-list/tooldetail/232-qf_test
+
+
+Extending via scripts... Jython

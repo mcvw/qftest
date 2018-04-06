@@ -1,0 +1,3033 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE RootStep>
+<RootStep id="_0" name="root" version="4.1.4">
+  <include>qfs.qft</include>
+  <reference>qfs.qft</reference>
+  <TestSet id="_1" name="Popular Restaurants">
+    <SetupSequence id="_1lW-" name="Open web page in a browser">
+      <BasicSequence id="_1lX0" name="Set global variables">
+        <SetGlobalStep id="_1lX1" varname="client">
+          <default>intuWeb</default>
+        </SetGlobalStep>
+        <SetGlobalStep id="_1lX2" varname="browser">
+          <default>firefox</default>
+        </SetGlobalStep>
+        <SetGlobalStep id="_1lX3" varname="browserdir">
+          <default>C:\Program Files (x86)\Mozilla Firefox</default>
+        </SetGlobalStep>
+      </BasicSequence>
+      <BasicSequence id="_1lX4" name="Start browser without window">
+        <BrowserClientStarter browser="$(browser)" client="$(client)"
+                              executable="${qftest:java}" id="_1lX5"
+                              mozhome="$(browserdir)" openwindow="false"/>
+        <ClientWaiter client="$(client)" id="_1lX6"/>
+      </BasicSequence>
+      <BasicSequence id="_1lX7" name="Perform browser settings">
+        <ProcedureCall id="_1lX8"
+                       procedure="qfs.qft#qfs.web.browser.settings.doStartupSettings">
+          <variable name="client">$(client)</variable>
+          <variable name="browser">$(browser)</variable>
+          <variable name="mozhome">$(browserdir)</variable>
+          <variable name="emptyCache">true</variable>
+          <variable name="enableCookies">true</variable>
+          <variable name="deleteCookies">true</variable>
+          <variable name="locale">en</variable>
+          <variable name="enableProxy">false</variable>
+          <variable name="proxyAddress"/>
+          <variable name="proxyPort"/>
+          <variable name="proxyAutoconfigurl"/>
+          <variable name="enableProxyBypass">false</variable>
+          <variable name="proxyBypass"/>
+          <variable name="mozprofile"/>
+          <variable name="compatibilitymode">no</variable>
+        </ProcedureCall>
+      </BasicSequence>
+      <BasicSequence id="_1lX9" name="Open browser window with URL">
+        <BrowserClientStarter browser="$(browser)" client="$(client)"
+                              executable="${qftest:java}" id="_1lXA"
+                              openwindow="true"
+                              url="http://staging.intu.co.uk/"/>
+        <DocumentWaiter client="$(client)" component="genericDocument"
+                        id="_1lXB" timeout="60000"/>
+      </BasicSequence>
+      <BasicSequence id="_1lXC" name="Install CustomWebResolver">
+        <ProcedureCall id="_1lXD"
+                       procedure="qfs.qft#qfs.web.ajax.installCustomWebResolver">
+          <variable name="client">$(client)</variable>
+          <variable name="resolver">autodetect</variable>
+          <variable name="version"/>
+          <variable name="genericClasses"/>
+          <variable name="attributesToGenericClasses"/>
+          <variable name="tagsToGenericClasses"/>
+          <variable name="ignoreTags"/>
+          <variable name="ignoreByAttributes"/>
+          <variable name="autoIdPatterns"/>
+          <variable name="customIdAttributes"/>
+          <variable name="interestingByAttributes"/>
+          <variable name="attributesToQftFeature"/>
+          <variable name="documentJS"/>
+          <variable name="auto_extjs_version">3</variable>
+          <variable name="auto_gwt_version">2</variable>
+          <variable name="auto_icefaces_version">1</variable>
+          <variable name="auto_jqueryui_version">1</variable>
+          <variable name="auto_jeasyui_version">1</variable>
+          <variable name="auto_kendoui_version">1</variable>
+          <variable name="auto_primefaces_version">2</variable>
+          <variable name="auto_rap_version">3</variable>
+          <variable name="auto_richfaces_version">3</variable>
+          <variable name="auto_vaadin_version">2</variable>
+          <variable name="auto_zk_version">1</variable>
+        </ProcedureCall>
+      </BasicSequence>
+    </SetupSequence>
+    <TestCase id="_2"
+              name="CR-255:Popular restaurants block is not displayed on Food &amp; Drink hub when there are no Popular restaurants">
+      <TestStep id="_1mA6" name="Preconditions">
+        <ProcedureCall id="_1mCd" procedure="Resize window"/>
+        <ProcedureCall id="_1mCe" procedure="Navigate to CMS"/>
+        <ProcedureCall id="_1mCf" procedure="CMS: Login"/>
+        <ProcedureCall id="_1mCg" procedure="CMS: Navigate to Byron"/>
+        <ProcedureCall id="_1mCh"
+                       procedure="CMS: Select popular store checkbox"/>
+        <ProcedureCall id="_1mCi" procedure="CMS: Select the Update button"/>
+        <ProcedureCall id="_1mCj" procedure="CMS: Navigate to Caffè Nero"/>
+        <ProcedureCall id="_1mCk"
+                       procedure="CMS: Select popular store checkbox"/>
+        <ProcedureCall id="_1mCl" procedure="CMS: Select the Update button"/>
+        <ProcedureCall id="_1mCm" procedure="CMS: Navigate to Krispy Kreme"/>
+        <ProcedureCall id="_1mCn"
+                       procedure="CMS: Select popular store checkbox"/>
+        <ProcedureCall id="_1mCo" procedure="CMS: Select the Update button"/>
+        <ProcedureCall id="_1mCp" procedure="CMS: Navigate to Costa Coffee"/>
+        <ProcedureCall id="_1mCq"
+                       procedure="CMS: Select popular store checkbox"/>
+        <ProcedureCall id="_1mCr" procedure="CMS: Select the Update button"/>
+        <ProcedureCall id="_1mCs" procedure="CMS: Navigate to Pizza Hut"/>
+        <ProcedureCall id="_1mCt"
+                       procedure="CMS: Select popular store checkbox"/>
+        <ProcedureCall id="_1mCu" procedure="CMS: Select the Update button"/>
+        <ProcedureCall id="_1mCv" procedure="CMS: Navigate to McDonald's"/>
+        <ProcedureCall id="_1mCw"
+                       procedure="CMS: Select popular store checkbox"/>
+        <ProcedureCall id="_1mCx" procedure="CMS: Select the Update button"/>
+        <ProcedureCall id="_1mCy" procedure="CMS: Navigate to KFC"/>
+        <ProcedureCall id="_1mCz"
+                       procedure="CMS: Select popular store checkbox"/>
+        <ProcedureCall id="_1mC+" procedure="CMS: Select the Update button"/>
+        <ProcedureCall id="_1mC-"
+                       procedure="CMS: Navigate to Ed's Easy Diner"/>
+        <ProcedureCall id="_1mD0"
+                       procedure="CMS: Select popular store checkbox"/>
+        <ProcedureCall id="_1mD1" procedure="CMS: Select the Update button"/>
+      </TestStep>
+      <TestStep id="_1mD2" name="Open http://staging.intu.co.uk into browser">
+        <ProcedureCall id="_1mD5"
+                       procedure="intu home page is loaded on the browser"/>
+      </TestStep>
+      <TestStep id="_1mD3"
+                name="Select Chapelfield &gt; Food &amp; Drink from megamenu">
+        <IfSequence id="_1m59" name="Open on Chrome"
+                    test="'$(browser)'==&#34;chrome&#34;">
+          <ProcedureCall id="_1mOU" procedure="Select Food &amp; Drink page"/>
+          <ElseifSequence id="_1m5B" name="Open on Firefox"
+                          test="'$(browser)'==&#34;firefox&#34;">
+            <ProcedureCall id="_1m5M"
+                           procedure="Select Food &amp; Drink page [Firefox]"/>
+          </ElseifSequence>
+          <ElseSequence id="_1m5C" name="Open on IE">
+            <ProcedureCall id="_1m5L"
+                           procedure="Select Food &amp; Drink page"/>
+          </ElseSequence>
+        </IfSequence>
+        <ProcedureCall id="_1mFF"
+                       procedure="Check the Popular/All Restaurants tabs are not displayed"/>
+        <ProcedureCall id="_1mFG"
+                       procedure="Check the 'Popular restaurants' title is not displayed"/>
+      </TestStep>
+    </TestCase>
+    <TestCase id="_1mFI"
+              name="CR-256:Popular stores block is not displayed on Food &amp; Drink hub when only Popular stores are flagged">
+      <TestStep id="_1mFJ" name="Preconditions">
+        <ProcedureCall id="_1mP3" procedure="Resize window"/>
+        <ProcedureCall id="_1mFr"
+                       procedure="intu home page is loaded on the browser"/>
+        <IfSequence id="_1mFs" name="Open on Chrome"
+                    test="'$(browser)'==&#34;chrome&#34;">
+          <ProcedureCall id="_1mFt" procedure="Select Stores page"/>
+          <ElseifSequence id="_1mFu" name="Open on Firefox"
+                          test="'$(browser)'==&#34;firefox&#34;">
+            <ProcedureCall id="_1mFv"
+                           procedure="Select Stores page [Firefox]"/>
+          </ElseifSequence>
+          <ElseSequence id="_1mFw" name="Open on IE">
+            <ProcedureCall id="_1mFx" procedure="Select Stores page"/>
+          </ElseSequence>
+        </IfSequence>
+        <ProcedureCall id="_1mGY"
+                       procedure="Check the Popular/All Restaurants tabs are displayed"/>
+        <ProcedureCall id="_1mGZ"
+                       procedure="Check the 'Popular restaurants' title is displayed on Food &amp; Drink page"/>
+      </TestStep>
+      <TestStep id="_1mGa" name="Open http://staging.intu.co.uk into browser">
+        <ProcedureCall id="_1mGb"
+                       procedure="intu home page is loaded on the browser"/>
+      </TestStep>
+      <TestStep id="_1mGc"
+                name="Select Chapelfield &gt; Food &amp; Drink from megamenu">
+        <IfSequence id="_1mOV" name="Open on Chrome"
+                    test="'$(browser)'==&#34;chrome&#34;">
+          <ProcedureCall id="_1mOW" procedure="Select Food &amp; Drink page"/>
+          <ElseifSequence id="_1mOX" name="Open on Firefox"
+                          test="'$(browser)'==&#34;firefox&#34;">
+            <ProcedureCall id="_1mOY"
+                           procedure="Select Food &amp; Drink page [Firefox]"/>
+          </ElseifSequence>
+          <ElseSequence id="_1mOZ" name="Open on IE">
+            <ProcedureCall id="_1mOa"
+                           procedure="Select Food &amp; Drink page"/>
+          </ElseSequence>
+        </IfSequence>
+        <ProcedureCall id="_1mGj"
+                       procedure="Check the Popular/All Restaurants tabs are not displayed"/>
+        <ProcedureCall id="_1mGk"
+                       procedure="Check the 'Popular restaurants' title is not displayed"/>
+      </TestStep>
+    </TestCase>
+    <TestCase id="_1mGl"
+              name="CR-257:Popular stores block is not displayed on Food &amp; Drink hub when Popular stores &amp; restaurants are flag">
+      <TestStep id="_1mGm" name="Preconditions">
+        <TestStep id="_1mHE" name="Popular restaurants">
+          <ProcedureCall id="_1mHg" procedure="Resize window"/>
+          <ProcedureCall id="_1mHh" procedure="Navigate to CMS"/>
+          <ProcedureCall id="_1mHi" procedure="CMS: Login"/>
+          <ProcedureCall id="_1mHj" procedure="CMS: Navigate to Byron"/>
+          <ProcedureCall id="_1mHk"
+                         procedure="CMS: Select popular store checkbox"/>
+          <ProcedureCall id="_1mHl"
+                         procedure="CMS: Select the Update button"/>
+          <ProcedureCall id="_1mHm" procedure="CMS: Navigate to Caffè Nero"/>
+          <ProcedureCall id="_1mHn"
+                         procedure="CMS: Select popular store checkbox"/>
+          <ProcedureCall id="_1mHo"
+                         procedure="CMS: Select the Update button"/>
+          <ProcedureCall id="_1mHp"
+                         procedure="CMS: Navigate to Krispy Kreme"/>
+          <ProcedureCall id="_1mHq"
+                         procedure="CMS: Select popular store checkbox"/>
+          <ProcedureCall id="_1mHr"
+                         procedure="CMS: Select the Update button"/>
+          <ProcedureCall id="_1mHs"
+                         procedure="CMS: Navigate to Costa Coffee"/>
+          <ProcedureCall id="_1mHt"
+                         procedure="CMS: Select popular store checkbox"/>
+          <ProcedureCall id="_1mHu"
+                         procedure="CMS: Select the Update button"/>
+          <ProcedureCall id="_1mHv" procedure="CMS: Navigate to Pizza Hut"/>
+          <ProcedureCall id="_1mHw"
+                         procedure="CMS: Select popular store checkbox"/>
+          <ProcedureCall id="_1mHx"
+                         procedure="CMS: Select the Update button"/>
+          <ProcedureCall id="_1mHy" procedure="CMS: Navigate to McDonald's"/>
+          <ProcedureCall id="_1mHz"
+                         procedure="CMS: Select popular store checkbox"/>
+          <ProcedureCall id="_1mH+"
+                         procedure="CMS: Select the Update button"/>
+          <ProcedureCall id="_1mH-" procedure="CMS: Navigate to KFC"/>
+          <ProcedureCall id="_1mI0"
+                         procedure="CMS: Select popular store checkbox"/>
+          <ProcedureCall id="_1mI1"
+                         procedure="CMS: Select the Update button"/>
+          <ProcedureCall id="_1mI2"
+                         procedure="CMS: Navigate to Ed's Easy Diner"/>
+          <ProcedureCall id="_1mI3"
+                         procedure="CMS: Select popular store checkbox"/>
+          <ProcedureCall id="_1mI4"
+                         procedure="CMS: Select the Update button"/>
+        </TestStep>
+        <TestStep id="_1mHC" name="Popular store">
+          <ProcedureCall id="_1mI5"
+                         procedure="intu home page is loaded on the browser"/>
+          <IfSequence id="_1mI6" name="Open on Chrome"
+                      test="'$(browser)'==&#34;chrome&#34;">
+            <ProcedureCall id="_1mI7" procedure="Select Stores page"/>
+            <ElseifSequence id="_1mI8" name="Open on Firefox"
+                            test="'$(browser)'==&#34;firefox&#34;">
+              <ProcedureCall id="_1mI9"
+                             procedure="Select Stores page [Firefox]"/>
+            </ElseifSequence>
+            <ElseSequence id="_1mIA" name="Open on IE">
+              <ProcedureCall id="_1mIB" procedure="Select Stores page"/>
+            </ElseSequence>
+          </IfSequence>
+          <ProcedureCall id="_1mIC"
+                         procedure="Check the Popular/All Restaurants tabs are displayed"/>
+          <ProcedureCall id="_1mID"
+                         procedure="Check the 'Popular restaurants' title is displayed on Food &amp; Drink page"/>
+        </TestStep>
+      </TestStep>
+      <TestStep id="_1mIE" name="Open http://staging.intu.co.uk into browser">
+        <ProcedureCall id="_1mIF"
+                       procedure="intu home page is loaded on the browser"/>
+      </TestStep>
+      <TestStep id="_1mIG"
+                name="Select Chapelfield &gt; Food &amp; Drink from megamenu">
+        <IfSequence id="_1mOb" name="Open on Chrome"
+                    test="'$(browser)'==&#34;chrome&#34;">
+          <ProcedureCall id="_1mOc" procedure="Select Food &amp; Drink page"/>
+          <ElseifSequence id="_1mOd" name="Open on Firefox"
+                          test="'$(browser)'==&#34;firefox&#34;">
+            <ProcedureCall id="_1mOe"
+                           procedure="Select Food &amp; Drink page [Firefox]"/>
+          </ElseifSequence>
+          <ElseSequence id="_1mOf" name="Open on IE">
+            <ProcedureCall id="_1mOg"
+                           procedure="Select Food &amp; Drink page"/>
+          </ElseSequence>
+        </IfSequence>
+      </TestStep>
+      <TestStep id="_1mJT" name="Click 'All Restaurants' tab">
+        <IfSequence id="_1mPC" name="For IE"
+                    test="'$(browser)'==&#34;ie&#34;">
+          <ProcedureCall id="_1mPD"
+                         procedure="Clicking 'All Restaurants' tab [IE]"/>
+          <ElseSequence id="_1mPG" name="For Firefox &amp; Chrome">
+            <ProcedureCall id="_1mPI"
+                           procedure="Clicking 'All Restaurants' tab"/>
+          </ElseSequence>
+        </IfSequence>
+        <ProcedureCall id="_1mJY"
+                       procedure="Check the alpha navigation is displayed"/>
+      </TestStep>
+      <TestStep id="_1mJU" name="Click 'Popular' tab">
+        <IfSequence id="_1mQn" name="For IE"
+                    test="'$(browser)'==&#34;ie&#34;">
+          <ProcedureCall id="_1mQo" procedure="Clicking 'Popular' tab [IE]"/>
+          <ElseSequence id="_1mQp" name="For Firefox &amp; Chrome">
+            <ProcedureCall id="_1mJi" procedure="Clicking 'Popular' tab"/>
+          </ElseSequence>
+        </IfSequence>
+        <ProcedureCall id="_1mJs"
+                       procedure="Check the 'Popular restaurants' title is displayed on Food &amp; Drink page"/>
+        <ProcedureCall id="_1mJt"
+                       procedure="Check the expanded restaurants cards are visible in Food &amp; Drink page"/>
+        <ProcedureCall id="_1mJj"
+                       procedure="Check the alpha navigation is not displayed"/>
+      </TestStep>
+    </TestCase>
+    <TestCase id="_1mJw"
+              name="CR-258:Popular restaurants block that is displayed on Food &amp; Drink hub page is the same as Stores hub page">
+      <TestStep id="_1mKY" name="Open http://staging.intu.co.uk into browser">
+        <ProcedureCall id="_1mP4" procedure="Resize window"/>
+        <ProcedureCall id="_1mKZ"
+                       procedure="intu home page is loaded on the browser"/>
+      </TestStep>
+      <TestStep id="_1mKa"
+                name="Select Chapelfield &gt; Food &amp; Drink from megamenu">
+        <IfSequence id="_1mOh" name="Open on Chrome"
+                    test="'$(browser)'==&#34;chrome&#34;">
+          <ProcedureCall id="_1mOi" procedure="Select Food &amp; Drink page"/>
+          <ElseifSequence id="_1mOj" name="Open on Firefox"
+                          test="'$(browser)'==&#34;firefox&#34;">
+            <ProcedureCall id="_1mOk"
+                           procedure="Select Food &amp; Drink page [Firefox]"/>
+          </ElseifSequence>
+          <ElseSequence id="_1mOl" name="Open on IE">
+            <ProcedureCall id="_1mOm"
+                           procedure="Select Food &amp; Drink page"/>
+          </ElseSequence>
+        </IfSequence>
+      </TestStep>
+      <TestStep id="_1mKl" name="Click 'All Restaurants' tab">
+        <IfSequence id="_1mQv" name="For IE"
+                    test="'$(browser)'==&#34;ie&#34;">
+          <ProcedureCall id="_1mQw"
+                         procedure="Clicking 'All Restaurants' tab [IE]"/>
+          <ElseSequence id="_1mQx" name="For Firefox &amp; Chrome">
+            <ProcedureCall id="_1mQy"
+                           procedure="Clicking 'All Restaurants' tab"/>
+          </ElseSequence>
+        </IfSequence>
+        <ProcedureCall id="_1mKn"
+                       procedure="Check the alpha navigation is displayed"/>
+      </TestStep>
+      <TestStep id="_1mKo" name="Click 'Popular' tab">
+        <IfSequence id="_1mQr" name="For IE"
+                    test="'$(browser)'==&#34;ie&#34;">
+          <ProcedureCall id="_1mQs" procedure="Clicking 'Popular' tab [IE]"/>
+          <ElseSequence id="_1mQt" name="For Firefox &amp; Chrome">
+            <ProcedureCall id="_1mQu" procedure="Clicking 'Popular' tab"/>
+          </ElseSequence>
+        </IfSequence>
+        <ProcedureCall id="_1mKq"
+                       procedure="Check the 'Popular restaurants' title is displayed on Food &amp; Drink page"/>
+        <ProcedureCall id="_1mKr"
+                       procedure="Check the expanded restaurants cards are visible in Food &amp; Drink page"/>
+        <ProcedureCall id="_1mKs"
+                       procedure="Check the alpha navigation is not displayed"/>
+      </TestStep>
+      <TestStep id="_1mKt" name="Select Lakeside &gt; Store from megamenu">
+        <IfSequence id="_1mKu" name="Open on Chrome"
+                    test="'$(browser)'==&#34;chrome&#34;">
+          <ProcedureCall id="_1mKv" procedure="Select Stores page"/>
+          <ElseifSequence id="_1mKw" name="Open on Firefox"
+                          test="'$(browser)'==&#34;firefox&#34;">
+            <ProcedureCall id="_1mKx"
+                           procedure="Select Stores page [Firefox]"/>
+          </ElseifSequence>
+          <ElseSequence id="_1mL0" name="Open on IE">
+            <ProcedureCall id="_1mL1" procedure="Select Stores page"/>
+          </ElseSequence>
+        </IfSequence>
+      </TestStep>
+      <TestStep id="_1mLP"
+                name="Scroll down to the popular restaurants section">
+        <ProcedureCall id="_1mLR"
+                       procedure="Check the 'Popular restaurants' title is displayed on Stores page"/>
+        <ProcedureCall id="_1mLe"
+                       procedure="Check the expanded restaurants cards are visible in Stores page"/>
+      </TestStep>
+    </TestCase>
+    <TestCase id="_1mMg"
+              name="CR-259:Popular restaurants 'view all' CTA switches tabs">
+      <TestStep id="_1mMh" name="Open http://staging.intu.co.uk into browser">
+        <ProcedureCall id="_1mP5" procedure="Resize window"/>
+        <ProcedureCall id="_1mMi"
+                       procedure="intu home page is loaded on the browser"/>
+      </TestStep>
+      <TestStep id="_1mMj"
+                name="Select Chapelfield &gt; Food &amp; Drink from megamenu">
+        <IfSequence id="_1mOn" name="Open on Chrome"
+                    test="'$(browser)'==&#34;chrome&#34;">
+          <ProcedureCall id="_1mOo" procedure="Select Food &amp; Drink page"/>
+          <ElseifSequence id="_1mOp" name="Open on Firefox"
+                          test="'$(browser)'==&#34;firefox&#34;">
+            <ProcedureCall id="_1mOq"
+                           procedure="Select Food &amp; Drink page [Firefox]"/>
+          </ElseifSequence>
+          <ElseSequence id="_1mOr" name="Open on IE">
+            <ProcedureCall id="_1mOs"
+                           procedure="Select Food &amp; Drink page"/>
+          </ElseSequence>
+        </IfSequence>
+      </TestStep>
+      <TestStep id="_1mMu" name="Click 'view all' CTA">
+        <ProcedureCall id="_1mMv" procedure="Clicking 'View All' button"/>
+        <ProcedureCall id="_1mMw"
+                       procedure="Check the alpha navigation is displayed"/>
+      </TestStep>
+      <TestStep id="_1mN6" name="Click 'Popular' tab">
+        <IfSequence id="_1mQz" name="For IE"
+                    test="'$(browser)'==&#34;ie&#34;">
+          <ProcedureCall id="_1mQ+" procedure="Clicking 'Popular' tab [IE]"/>
+          <ElseSequence id="_1mQ-" name="For Firefox &amp; Chrome">
+            <ProcedureCall id="_1mR0" procedure="Clicking 'Popular' tab"/>
+          </ElseSequence>
+        </IfSequence>
+        <ProcedureCall id="_1mNA"
+                       procedure="Check the expanded restaurants cards are visible in Food &amp; Drink page"/>
+      </TestStep>
+    </TestCase>
+    <CleanupSequence id="_37">
+      <ProcedureCall id="_3DR" procedure="closeBrowser"/>
+    </CleanupSequence>
+  </TestSet>
+  <PackageRoot id="_3">
+    <Procedure id="_1lo0" name="Navigate to CMS">
+      <ClientRequestStep client="$(client)" component="staging.intu.co.uk"
+                         id="_1mA5" requestmethod="GET"
+                         url="http://staging.intu.co.uk/admin">
+        <comment>Open the CMS logging page</comment>
+      </ClientRequestStep>
+      <DocumentWaiter client="$(client)" component="staging.intu.co.uk"
+                      id="_1lo2" timeout="60000"/>
+    </Procedure>
+    <Procedure id="_1lXE" name="CMS: Login">
+      <ProcedureCall id="_1lxG" procedure="qfs.web.text.setText">
+        <variable name="id">${id:username}</variable>
+        <variable name="text">ahmed.abdulrahman</variable>
+        <comment>Enters username into the username field</comment>
+      </ProcedureCall>
+      <ProcedureCall id="_1lxH" procedure="qfs.web.text.setText">
+        <variable name="id">${id:password}</variable>
+        <variable name="text">password1</variable>
+        <comment>Enters password into the password field</comment>
+      </ProcedureCall>
+      <KeyEventStep client="$(client)" component="password" event="KEY_PTR"
+                    id="_1lxI" keychar="0" keycode="10" modifiers="0">
+        <comment>Click on the Login button by pressing Enter key from the keyboard.</comment>
+      </KeyEventStep>
+      <DocumentWaiter client="$(client)" component="staging.intu.co.uk"
+                      id="_1lxJ" timeout="60000"/>
+    </Procedure>
+    <Procedure id="_1lul" name="Resize window">
+      <ComponentEventStep client="$(client)" component="staging.intu.co.uk"
+                          event="COMPONENT_RESIZED" id="_3DY" param1="1268"
+                          param2="670">
+        <comment>Resizes the browser window to 1268 x 670</comment>
+      </ComponentEventStep>
+    </Procedure>
+    <Procedure id="_1mAj" name="CMS: Navigate to Byron">
+      <SelectionEventStep client="$(client)" component="staging.intu.co.uk"
+                          detail="goto:https://staging.intu.co.uk/admin/en/cms/content/edit?id=%2Fwebsite%2Fwww.intu.co.uk%2Fpage%2Fchapelfield%2Fstores%2Fbyron"
+                          event="SELECTION" id="_1mB0">
+        <comment>Navigate to Byron [Chapelfield centre].For some reason using Browser HTTP will not direct me to the location I desire.</comment>
+      </SelectionEventStep>
+      <DocumentWaiter client="$(client)" component="staging.intu.co.uk"
+                      id="_F" timeout="60000"/>
+    </Procedure>
+    <Procedure id="_1mBS" name="CMS: Navigate to Caffè Nero">
+      <SelectionEventStep client="$(client)" component="staging.intu.co.uk"
+                          detail="goto:https://staging.intu.co.uk/admin/en/cms/content/edit?id=%2Fwebsite%2Fwww.intu.co.uk%2Fpage%2Fchapelfield%2Fstores%2Fcaffe-nero"
+                          event="SELECTION" id="_1mBT">
+        <comment>Navigate to Caffè Nero [Chapelfield centre].For some reason using Browser HTTP will not direct me to the location I desire.</comment>
+      </SelectionEventStep>
+      <DocumentWaiter client="$(client)" component="staging.intu.co.uk"
+                      id="_1mBU" timeout="60000"/>
+    </Procedure>
+    <Procedure id="_1mBV" name="CMS: Navigate to Krispy Kreme">
+      <SelectionEventStep client="$(client)" component="staging.intu.co.uk"
+                          detail="goto:https://staging.intu.co.uk/admin/en/cms/content/edit?id=%2Fwebsite%2Fwww.intu.co.uk%2Fpage%2Fchapelfield%2Fstores%2Fkrispy-kreme"
+                          event="SELECTION" id="_1mBW">
+        <comment>Navigate to Krispy Kreme [Chapelfield centre].For some reason using Browser HTTP will not direct me to the location I desire.</comment>
+      </SelectionEventStep>
+      <DocumentWaiter client="$(client)" component="staging.intu.co.uk"
+                      id="_1mBX" timeout="60000"/>
+    </Procedure>
+    <Procedure id="_1mBY" name="CMS: Navigate to Costa Coffee">
+      <SelectionEventStep client="$(client)" component="staging.intu.co.uk"
+                          detail="goto:https://staging.intu.co.uk/admin/en/cms/content/edit?id=%2Fwebsite%2Fwww.intu.co.uk%2Fpage%2Fchapelfield%2Fstores%2Fcosta-coffee"
+                          event="SELECTION" id="_1mBZ">
+        <comment>Navigate to Costa Coffee [Chapelfield centre].For some reason using Browser HTTP will not direct me to the location I desire.</comment>
+      </SelectionEventStep>
+      <DocumentWaiter client="$(client)" component="staging.intu.co.uk"
+                      id="_1mBa" timeout="60000"/>
+    </Procedure>
+    <Procedure id="_1mBb" name="CMS: Navigate to Pizza Hut">
+      <SelectionEventStep client="$(client)" component="staging.intu.co.uk"
+                          detail="goto:https://staging.intu.co.uk/admin/en/cms/content/edit?id=%2Fwebsite%2Fwww.intu.co.uk%2Fpage%2Fchapelfield%2Fstores%2Fpizza-hut"
+                          event="SELECTION" id="_1mBc">
+        <comment>Navigate to Pizza Hut [Chapelfield centre].For some reason using Browser HTTP will not direct me to the location I desire.</comment>
+      </SelectionEventStep>
+      <DocumentWaiter client="$(client)" component="staging.intu.co.uk"
+                      id="_1mBd" timeout="60000"/>
+    </Procedure>
+    <Procedure id="_1mBf" name="CMS: Navigate to McDonald's">
+      <SelectionEventStep client="$(client)" component="staging.intu.co.uk"
+                          detail="goto:https://staging.intu.co.uk/admin/en/cms/content/edit?id=%2Fwebsite%2Fwww.intu.co.uk%2Fpage%2Fchapelfield%2Fstores%2Fmcdonald-s"
+                          event="SELECTION" id="_1mBg">
+        <comment>Navigate to McDonald's [Chapelfield centre].For some reason using Browser HTTP will not direct me to the location I desire.</comment>
+      </SelectionEventStep>
+      <DocumentWaiter client="$(client)" component="staging.intu.co.uk"
+                      id="_1mBh" timeout="60000"/>
+    </Procedure>
+    <Procedure id="_1mBi" name="CMS: Navigate to KFC">
+      <SelectionEventStep client="$(client)" component="staging.intu.co.uk"
+                          detail="goto:https://staging.intu.co.uk/admin/en/cms/content/edit?id=%2Fwebsite%2Fwww.intu.co.uk%2Fpage%2Fchapelfield%2Fstores%2Fkfc"
+                          event="SELECTION" id="_1mBj">
+        <comment>Navigate to KFC [Chapelfield centre].For some reason using Browser HTTP will not direct me to the location I desire.</comment>
+      </SelectionEventStep>
+      <DocumentWaiter client="$(client)" component="staging.intu.co.uk"
+                      id="_1mBk" timeout="60000"/>
+    </Procedure>
+    <Procedure id="_1mBl" name="CMS: Navigate to Ed's Easy Diner">
+      <SelectionEventStep client="$(client)" component="staging.intu.co.uk"
+                          detail="goto:https://staging.intu.co.uk/admin/en/cms/content/edit?id=%2Fwebsite%2Fwww.intu.co.uk%2Fpage%2Fchapelfield%2Fstores%2Fed-s-easy-diner"
+                          event="SELECTION" id="_1mBm">
+        <comment>Navigate to Ed's Easy Diner [Chapelfield centre].For some reason using Browser HTTP will not direct me to the location I desire.</comment>
+      </SelectionEventStep>
+      <DocumentWaiter client="$(client)" component="staging.intu.co.uk"
+                      id="_1mBn" timeout="60000"/>
+    </Procedure>
+    <Procedure id="_1mAk" name="CMS: Select popular store checkbox">
+      <IfSequence id="_1mNv" name="Run on IE"
+                  test="'$(browser)'==&#34;ie&#34;">
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="staging.intu.co.uk.html" event="MOUSE_MPRC"
+                        id="_1mO0" modifiers="16" x="1239" y="36"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="sbbef_popular" event="MOUSE_MPRC"
+                        id="_1mO1" modifiers="16"/>
+        <ElseSequence id="_1mNw" name="Run on Firefox or Chrome">
+          <MouseEventStep clicks="1" client="$(client)"
+                          component="staging.intu.co.uk.html"
+                          event="MOUSE_PRESSED" id="_1mBG" modifiers="16"
+                          x="1245" y="35"/>
+          <MouseEventStep clicks="0" client="$(client)"
+                          component="staging.intu.co.uk.html"
+                          event="MOUSE_DRAGGED" id="_1mBH" modifiers="0"
+                          x="1231" y="554"/>
+          <MouseEventStep clicks="1" client="$(client)"
+                          component="staging.intu.co.uk.html"
+                          event="MOUSE_RELEASED" id="_1mBI" modifiers="16"
+                          x="1231" y="8582"/>
+          <MouseEventStep clicks="1" client="$(client)"
+                          component="secbff_popular" event="MOUSE_MPRC"
+                          id="_1mBJ" modifiers="16" postdelay="5000">
+            <comment>Select popular store checkbox</comment>
+          </MouseEventStep>
+        </ElseSequence>
+      </IfSequence>
+    </Procedure>
+    <Procedure id="_1mAl" name="CMS: Select the Update button">
+      <comment>Clicking the 'Update' button to update the changes </comment>
+      <KeyEventStep client="$(client)" component="buttonBtn_update_and_list"
+                    event="KEY_PTR" id="_1mNt" keychar="0" keycode="10"
+                    modifiers="0" postdelay="6000">
+        <comment>Clicking the update button in the CMS to update the changes</comment>
+      </KeyEventStep>
+    </Procedure>
+    <Procedure id="_1mAn" name="intu home page is loaded on the browser">
+      <ClientRequestStep client="$(client)" component="staging.intu.co.uk"
+                         id="_1mD6" requestmethod="GET"
+                         url="https://staging.intu.co.uk/"/>
+      <DocumentWaiter client="$(client)" component="staging.intu.co.uk"
+                      id="_1mD7" timeout="60000"/>
+    </Procedure>
+    <Procedure id="_1mAp" name="Select Food &amp; Drink page [Firefox]">
+      <MouseEventStep clicks="1" client="$(client)"
+                      component="staging.intu.co.uk.div4"
+                      event="MOUSE_DRAG_OVER" id="_1mEl" modifiers="16"
+                      x="227" y="34">
+        <comment>Mouse hovers over the Shopping Centres in the mega menu</comment>
+      </MouseEventStep>
+      <MouseEventStep clicks="1" client="$(client)"
+                      component="staging.intu.co.uk.div4"
+                      event="MOUSE_DRAG_OVER" id="_1mEm" modifiers="16"
+                      x="227" y="180">
+        <comment>Mouse hovers over the intu Chapelfield</comment>
+      </MouseEventStep>
+      <MouseEventStep clicks="1" client="$(client)"
+                      component="staging.intu.co.uk.div4"
+                      event="MOUSE_DRAG_OVER" id="_1mEn" modifiers="16"
+                      x="527" y="180">
+        <comment>Hovering the mouse slightly to the right</comment>
+      </MouseEventStep>
+      <MouseEventStep clicks="1" client="$(client)"
+                      component="staging.intu.co.uk.div4"
+                      event="MOUSE_DRAG_OVER" id="_1mEo" modifiers="16"
+                      x="527" y="385">
+        <comment>Mouse hovers over the Food &amp; Drink in Chapelfield</comment>
+      </MouseEventStep>
+      <MouseEventStep clicks="1" client="$(client)"
+                      component="linkFood___drink2" event="MOUSE_MPRC"
+                      id="_1mEp" modifiers="16">
+        <comment>Click on the Food &amp; Drink link</comment>
+      </MouseEventStep>
+      <DocumentWaiter client="$(client)" component="staging.intu.co.uk"
+                      id="_1mG9" timeout="60000"/>
+    </Procedure>
+    <Procedure id="_1mON" name="Select Food &amp; Drink page">
+      <MouseEventStep clicks="1" client="$(client)"
+                      component="linkShopping_centres" event="MOUSE_DRAG_OVER"
+                      id="_1mOO" modifiers="16"/>
+      <MouseEventStep clicks="1" client="$(client)"
+                      component="linkIntu_Chapelfield" event="MOUSE_DRAG_OVER"
+                      id="_1mOP" modifiers="16"/>
+      <MouseEventStep clicks="1" client="$(client)"
+                      component="staging.intu.co.uk.div4"
+                      event="MOUSE_DRAG_OVER" id="_1mOQ" modifiers="16"
+                      x="527" y="180">
+        <comment>Hovering the mouse slightly to the right</comment>
+      </MouseEventStep>
+      <MouseEventStep clicks="1" client="$(client)"
+                      component="linkFood___drink2" event="MOUSE_DRAG_OVER"
+                      id="_1mOR" modifiers="16"/>
+      <MouseEventStep clicks="1" client="$(client)"
+                      component="linkFood___drink2" event="MOUSE_MPRC"
+                      id="_1mOS" modifiers="16"/>
+      <DocumentWaiter client="$(client)" component="staging.intu.co.uk"
+                      id="_1mOT" timeout="60000"/>
+    </Procedure>
+    <Procedure id="_1mFy" name="Select Stores page [Firefox]">
+      <MouseEventStep clicks="1" client="$(client)"
+                      component="staging.intu.co.uk.div4"
+                      event="MOUSE_DRAG_OVER" id="_1mFz" modifiers="16"
+                      x="227" y="34">
+        <comment>Mouse hovers over the Shopping Centres in the mega menu</comment>
+      </MouseEventStep>
+      <MouseEventStep clicks="1" client="$(client)"
+                      component="staging.intu.co.uk.div4"
+                      event="MOUSE_DRAG_OVER" id="_1mF+" modifiers="16"
+                      x="227" y="180">
+        <comment>Mouse hovers over the intu Chapelfield</comment>
+      </MouseEventStep>
+      <MouseEventStep clicks="1" client="$(client)"
+                      component="staging.intu.co.uk.div4"
+                      event="MOUSE_DRAG_OVER" id="_1mF-" modifiers="16"
+                      x="527" y="180">
+        <comment>Hovering the mouse slightly to the right</comment>
+      </MouseEventStep>
+      <MouseEventStep clicks="1" client="$(client)"
+                      component="staging.intu.co.uk.div4"
+                      event="MOUSE_DRAG_OVER" id="_1mG0" modifiers="16"
+                      x="527" y="330">
+        <comment>Mouse hovers over the Stores in Chapelfield</comment>
+      </MouseEventStep>
+      <MouseEventStep clicks="1" client="$(client)" component="linkStores2"
+                      event="MOUSE_MPRC" id="_1mG7" modifiers="16"/>
+      <DocumentWaiter client="$(client)" component="staging.intu.co.uk"
+                      id="_1mG8" timeout="60000"/>
+    </Procedure>
+    <Procedure id="_1mOt" name="Select Stores page">
+      <MouseEventStep clicks="1" client="$(client)"
+                      component="linkShopping_centres" event="MOUSE_DRAG_OVER"
+                      id="_1mOu" modifiers="16"/>
+      <MouseEventStep clicks="1" client="$(client)"
+                      component="linkIntu_Chapelfield" event="MOUSE_DRAG_OVER"
+                      id="_1mOv" modifiers="16"/>
+      <MouseEventStep clicks="1" client="$(client)"
+                      component="staging.intu.co.uk.div4"
+                      event="MOUSE_DRAG_OVER" id="_1mOw" modifiers="16"
+                      x="527" y="180">
+        <comment>Hovering the mouse slightly to the right</comment>
+      </MouseEventStep>
+      <MouseEventStep clicks="1" client="$(client)" component="linkStores2"
+                      event="MOUSE_DRAG_OVER" id="_1mP1" modifiers="16"/>
+      <MouseEventStep clicks="1" client="$(client)" component="linkStores2"
+                      event="MOUSE_MPRC" id="_1mP2" modifiers="16"/>
+      <DocumentWaiter client="$(client)" component="staging.intu.co.uk"
+                      id="_1mOz" timeout="60000"/>
+    </Procedure>
+    <Procedure id="_1mAq"
+               name="Check the Popular/All Restaurants tabs are not displayed">
+      <CheckBooleanStep checktype="visible" client="$(client)"
+                        component="staging.intu.co.uk.liPopular" id="_1mFC"
+                        state="false"/>
+      <CheckBooleanStep checktype="visible" client="$(client)"
+                        component="staging.intu.co.uk.liAll_Restaurants"
+                        id="_1mFD" state="false"/>
+    </Procedure>
+    <Procedure id="_1mAr"
+               name="Check the 'Popular restaurants' title is not displayed">
+      <CheckBooleanStep checktype="visible" client="$(client)"
+                        component="h3Popular_restaurants" id="_1mF3"
+                        state="false">
+        <comment>Check the heading is visible</comment>
+      </CheckBooleanStep>
+    </Procedure>
+    <Procedure id="_1mGT"
+               name="Check the Popular/All Restaurants tabs are displayed">
+      <CheckBooleanStep checktype="visible" client="$(client)"
+                        component="staging.intu.co.uk.liPopular" id="_1mGU"/>
+      <CheckBooleanStep checktype="visible" client="$(client)"
+                        component="staging.intu.co.uk.liAll_Restaurants"
+                        id="_1mGV"/>
+    </Procedure>
+    <Procedure id="_1mGW"
+               name="Check the 'Popular restaurants' title is displayed on Food &amp; Drink page">
+      <CheckBooleanStep checktype="visible" client="$(client)"
+                        component="h3Popular_restaurants" id="_1mGX">
+        <comment>Check the heading is visible</comment>
+      </CheckBooleanStep>
+    </Procedure>
+    <Procedure id="_1mAs"
+               name="Check there are two tabs: Popular &amp; All Restaurants">
+      <CheckStringStep client="$(client)"
+                       component="staging.intu.co.uk.liPopular" id="_1mIW">
+        <text>Popular</text>
+      </CheckStringStep>
+      <CheckStringStep client="$(client)"
+                       component="staging.intu.co.uk.liAll_Stores" id="_1mIX">
+        <text>All Restaurants</text>
+      </CheckStringStep>
+    </Procedure>
+    <Procedure id="_1mAt"
+               name="Check the Popular tab is selected by default [Firefox]">
+      <CheckImageStep client="$(client)"
+                      component="staging.intu.co.uk.liPopular" id="_1mJ1">
+        <ImageNode height="44" name="checkimage" width="99">
+          <binary size="287">eJzt2LFKw2AUgOGXyxAohAxS7OJSsIs5uZmpbg7FbHkHt6DJRSuRilAKjW/QhlIJpdLlkqWelA5Oiucisa40
+PzIly+HPuXe0BgAAAAAAAAAAAAAAv8Vcvo+z2/RpcP/weGyPvtJkMh19v9znb3VZ2vcvDp4sklQi1Y/k
+xMku8XqKAyD4EuukYXWbHTNCKRFKiVBKhFIilBKhlOxDrbIkujpr+g2HNPzT937UZKtahtsndqHyftjZ
+BHIc2ztpbmtVwTphP70tyH2gEcoMo8YrUfyLMBkVZvuyGCU4m4huOxqausbcPXUok/ZaVaUg/mJz9jjw
+6WOrl/8bVNpQxe3lbJN4ffdNiSIOPNmqILYoZRaz7SezxZ0Xrib5AFWSUuU=</binary>
+        </ImageNode>
+        <comment>Checking popular tab is selected by default</comment>
+      </CheckImageStep>
+    </Procedure>
+    <Procedure id="_1mAu"
+               name="Check the expanded restaurants cards are visible in Food &amp; Drink page">
+      <CheckBooleanStep checktype="visible" client="$(client)"
+                        component="staging.intu.co.uk.div5" id="_1mJK">
+        <comment>Checks the first expanded restaurants cards is visible</comment>
+      </CheckBooleanStep>
+      <CheckBooleanStep checktype="visible" client="$(client)"
+                        component="staging.intu.co.uk.div6" id="_1mJL">
+        <comment>Checks the second expanded restaurants cards is visible</comment>
+      </CheckBooleanStep>
+      <CheckBooleanStep checktype="visible" client="$(client)"
+                        component="staging.intu.co.uk.div7" id="_1mJM">
+        <comment>Checks the third expanded restaurants cards is visible</comment>
+      </CheckBooleanStep>
+      <CheckBooleanStep checktype="visible" client="$(client)"
+                        component="staging.intu.co.uk.div11" id="_1mJN">
+        <comment>Checks the fourth expanded restaurants cards is visible</comment>
+      </CheckBooleanStep>
+      <CheckBooleanStep checktype="visible" client="$(client)"
+                        component="staging.intu.co.uk.div12" id="_1mJO">
+        <comment>Checks the fifth expanded restaurants cards is visible</comment>
+      </CheckBooleanStep>
+      <CheckBooleanStep checktype="visible" client="$(client)"
+                        component="staging.intu.co.uk.div13" id="_1mJP">
+        <comment>Checks the sixth expanded restaurants cards is visible</comment>
+      </CheckBooleanStep>
+      <CheckBooleanStep checktype="visible" client="$(client)"
+                        component="staging.intu.co.uk.div14" id="_1mJQ">
+        <comment>Checks the seventh expanded restaurants cards is visible</comment>
+      </CheckBooleanStep>
+      <CheckBooleanStep checktype="visible" client="$(client)"
+                        component="staging.intu.co.uk.div15" id="_1mJR">
+        <comment>Checks the eighth expanded restaurants cards is visible</comment>
+      </CheckBooleanStep>
+    </Procedure>
+    <Procedure id="_1mPA" name="Clicking 'All Restaurants' tab [IE]">
+      <MouseEventStep clicks="1" client="$(client)" component="aView_All3"
+                      event="MOUSE_MPRC" id="_1mQg" modifiers="16">
+        <comment>Clicking 'View All' CTA because on IE11 the 'All Store' and 'All Restaurants' tab does not respond to a click. Therefore, I'm using the 'View All' to continue my testing on IE11 browser. </comment>
+      </MouseEventStep>
+    </Procedure>
+    <Procedure id="_1mQj" name="Clicking 'Popular' tab [IE]">
+      <SelectionEventStep client="$(client)" component="staging.intu.co.uk"
+                          detail="refresh" event="SELECTION" id="_1mQm">
+        <comment>Refreshing the browser because on IE11 the 'Popular' tab does not respond to a click. Therefore, I'm using refresh to continue my testing on IE11 browser. </comment>
+      </SelectionEventStep>
+    </Procedure>
+    <Procedure id="_1mFl" name="Clicking 'All Restaurants' tab">
+      <MouseEventStep clicks="1" client="$(client)"
+                      component="staging.intu.co.uk.liAll_Restaurants"
+                      event="MOUSE_MPRC" id="_1mJf" modifiers="16" x="83"
+                      y="23">
+        <comment>Clicking 'All Restaurants' tab</comment>
+      </MouseEventStep>
+    </Procedure>
+    <Procedure id="_1mFn" name="Clicking 'Popular' tab">
+      <MouseEventStep clicks="1" client="$(client)"
+                      component="staging.intu.co.uk.liPopular2"
+                      event="MOUSE_MPRC" id="_1mJo" modifiers="16" x="33"
+                      y="16"/>
+    </Procedure>
+    <Procedure id="_1mFm" name="Check the alpha navigation is displayed">
+      <IfSequence id="_1mR8" name="For Chrome"
+                  test="'$(browser)'==&#34;chrome&#34;">
+        <CheckBooleanStep checktype="visible" client="$(client)"
+                          component="staging.intu.co.uk.div29" id="_1mRA"/>
+        <ElseSequence id="_1mRB" name="For Firefox &amp; IE">
+          <CheckBooleanStep checktype="visible" client="$(client)"
+                            component="staging.intu.co.uk.div16" id="_1mRC">
+            <comment>Check the alpha navigation is displayed</comment>
+          </CheckBooleanStep>
+        </ElseSequence>
+      </IfSequence>
+    </Procedure>
+    <Procedure id="_1mJu" name="Check the alpha navigation is not displayed">
+      <CheckBooleanStep checktype="visible" client="$(client)"
+                        component="staging.intu.co.uk.div16" id="_1mJv"
+                        state="false">
+        <comment>Check the alpha navigation is not displayed</comment>
+      </CheckBooleanStep>
+    </Procedure>
+    <Procedure id="_1mMb"
+               name="Check the 'Popular restaurants' title is displayed on Stores page">
+      <CheckStringStep client="$(client)" component="h3Popular_restaurants2"
+                       id="_1mMc">
+        <text>Popular restaurants</text>
+        <comment>Check the heading is 'Popular restaurants'</comment>
+      </CheckStringStep>
+    </Procedure>
+    <Procedure id="_1mFp"
+               name="Check the expanded restaurants cards are visible in Stores page">
+      <CheckBooleanStep checktype="visible" client="$(client)"
+                        component="staging.intu.co.uk.div8" id="_1mMO">
+        <comment>Checks the first expanded restaurants card is visible</comment>
+      </CheckBooleanStep>
+      <CheckBooleanStep checktype="visible" client="$(client)"
+                        component="staging.intu.co.uk.div17" id="_1mMP">
+        <comment>Checks the second expanded restaurants card is visible</comment>
+      </CheckBooleanStep>
+      <CheckBooleanStep checktype="visible" client="$(client)"
+                        component="staging.intu.co.uk.div18" id="_1mMQ">
+        <comment>Checks the third expanded restaurants card is visible</comment>
+      </CheckBooleanStep>
+      <CheckBooleanStep checktype="visible" client="$(client)"
+                        component="staging.intu.co.uk.div19" id="_1mMR">
+        <comment>Checks the fourth expanded restaurants card is visible</comment>
+      </CheckBooleanStep>
+      <CheckBooleanStep checktype="visible" client="$(client)"
+                        component="staging.intu.co.uk.div20" id="_1mMS">
+        <comment>Checks the fifth expanded restaurants card is visible</comment>
+      </CheckBooleanStep>
+      <CheckBooleanStep checktype="visible" client="$(client)"
+                        component="staging.intu.co.uk.div21" id="_1mMT">
+        <comment>Checks the sixth expanded restaurants card is visible</comment>
+      </CheckBooleanStep>
+      <CheckBooleanStep checktype="visible" client="$(client)"
+                        component="staging.intu.co.uk.div22" id="_1mMU">
+        <comment>Checks the seventh expanded restaurants card is visible</comment>
+      </CheckBooleanStep>
+      <CheckBooleanStep checktype="visible" client="$(client)"
+                        component="staging.intu.co.uk.div23" id="_1mMV">
+        <comment>Checks the eighth expanded restaurants card is visible</comment>
+      </CheckBooleanStep>
+    </Procedure>
+    <Procedure id="_1mJp" name="Clicking 'View All' button">
+      <MouseEventStep clicks="1" client="$(client)" component="aView_All"
+                      event="MOUSE_MPRC" id="_1mN2" modifiers="16">
+        <comment>Clicking 'View All' button on the Food &amp; Drink page</comment>
+      </MouseEventStep>
+    </Procedure>
+    <Procedure id="_1mJr" name="qa"/>
+    <Procedure id="_1mMd" name="qa"/>
+    <Procedure id="_1mMe" name="qa"/>
+    <Procedure id="_1mMf" name="qa"/>
+    <Procedure id="_1mAo" name="[NOTES]CMS: Checkbox is unticked">
+      <SetGlobalStep id="_1mDe" varname="checkbox1">
+        <default>ticked</default>
+      </SetGlobalStep>
+      <SetGlobalStep id="_1mDE" varname="checkbox">
+        <default>unticked</default>
+      </SetGlobalStep>
+      <MouseEventStep clicks="1" client="$(client)"
+                      component="staging.intu.co.uk.html"
+                      event="MOUSE_PRESSED" id="_1mDU" modifiers="16" x="1245"
+                      y="35"/>
+      <MouseEventStep clicks="0" client="$(client)"
+                      component="staging.intu.co.uk.html"
+                      event="MOUSE_DRAGGED" id="_1mDV" modifiers="0" x="1231"
+                      y="554"/>
+      <MouseEventStep clicks="1" client="$(client)"
+                      component="staging.intu.co.uk.html"
+                      event="MOUSE_RELEASED" id="_1mDW" modifiers="16"
+                      x="1231" y="8582"/>
+      <IfSequence id="_1mD8" name="Checkbox is unticked"
+                  test="'$(checkbox)'==&#34;unticked&#34;">
+        <CheckBooleanStep checktype="checked" client="$(client)"
+                          component="seabd_popular" id="_1mDI" state="false"/>
+        <ElseifSequence id="_1mDc" name="Checkbox is ticked"
+                        test="'$(checkbox1)'==&#34;ticked&#34;">
+          <CheckBooleanStep checktype="checked" client="$(client)"
+                            component="seabd_popular" id="_1mDd"/>
+          <MouseEventStep clicks="1" client="$(client)"
+                          component="secbff_popular" event="MOUSE_MPRC"
+                          id="_1mDg" modifiers="16">
+            <comment>Select popular store checkbox</comment>
+          </MouseEventStep>
+          <CheckBooleanStep checktype="checked" client="$(client)"
+                            component="seabd_popular" id="_1mDh"
+                            state="false"/>
+        </ElseifSequence>
+      </IfSequence>
+    </Procedure>
+    <Procedure id="_38" name="closeBrowser">
+      <TryStep id="_39" name="browserTerminate">
+        <ClientWaiter client="$(client)" id="_3DI" timeout="500"/>
+        <WindowEventStep client="$(client)" component="staging.intu.co.uk"
+                         event="WINDOW_CLOSING" id="_3DK"/>
+        <TryStep id="_3DL" name="wait for termination">
+          <ProcessWaiter client="$(client)" id="_3DM"/>
+          <CatchSequence exception="TestException" id="_3DN" maxerror="0"
+                         name="checkBrowserClosed">
+            <ClientStopper client="$(client)" id="_3DO"/>
+            <ProcessWaiter client="$(client)" id="_3DP"/>
+          </CatchSequence>
+        </TryStep>
+        <CatchSequence exception="ClientNotTerminatedException" id="_3DQ"
+                       maxerror="0"/>
+      </TryStep>
+    </Procedure>
+  </PackageRoot>
+  <ExtraSequence id="_4">
+    <BasicSequence id="_1mR3" name="Recorded 14/06/17 14:16">
+      <CheckBooleanStep checktype="visible" client="$(client)"
+                        component="staging.intu.co.uk.div29" id="_1mR4"/>
+    </BasicSequence>
+  </ExtraSequence>
+  <WindowList id="_5">
+    <WebPageStep class="Window" feature="staging.intu.co.uk"
+                 id="staging.intu.co.uk" uid="_1mA7">
+      <extrafeature name="baseurl" negate="false" regexp="false" state="0">http://staging.intu.co.uk/</extrafeature>
+      <extrafeature name="qfs:class" negate="false" regexp="false" state="0">DOCUMENT</extrafeature>
+      <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                    state="0">Window</extrafeature>
+      <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                    state="0">DOCUMENT</extrafeature>
+      <extrafeature name="title" negate="false" regexp="false" state="0">Admin</extrafeature>
+      <extrafeature name="url" negate="false" regexp="false" state="0">http://staging.intu.co.uk/</extrafeature>
+      <ComponentStep class="HTML" classcount="1" classindex="0"
+                     id="staging.intu.co.uk.html" uid="_1mA8">
+        <extrafeature name="qfs:class" negate="false" regexp="false"
+                      state="0">HTML</extrafeature>
+        <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                      state="0">HTML</extrafeature>
+        <extrafeature name="tag" negate="false" regexp="false" state="0">HTML</extrafeature>
+        <ComponentStep class="BODY" classcount="1" classindex="0"
+                       id="staging.intu.co.uk.body" uid="_1mA9">
+          <extrafeature name="class" negate="false" regexp="false" state="0">page-header-fixed sonata-bc sonata-ba-no-side-menu login</extrafeature>
+          <extrafeature name="qfs:class" negate="false" regexp="false"
+                        state="0">BODY</extrafeature>
+          <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                        state="0">BODY</extrafeature>
+          <extrafeature name="tag" negate="false" regexp="false" state="0">BODY</extrafeature>
+          <ComponentStep class="FORM" classcount="1" classindex="0"
+                         height="217" id="staging.intu.co.uk.form" uid="_1mAA"
+                         width="300" x="356" y="140">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">login-form</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">FORM</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">FORM</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">FORM</extrafeature>
+            <ComponentStep class="TextField" classcount="2" classindex="0"
+                           feature="_username" height="34" id="username"
+                           name="username" uid="_1mAB" width="300" x="0"
+                           y="51">
+              <extrafeature name="class" negate="false" regexp="false"
+                            state="0">form-control placeholder-no-fix</extrafeature>
+              <extrafeature name="id" negate="false" regexp="false" state="1">username</extrafeature>
+              <extrafeature name="name" negate="false" regexp="false"
+                            state="1">_username</extrafeature>
+              <extrafeature name="qfs:class" negate="false" regexp="false"
+                            state="0">INPUT:TEXT</extrafeature>
+              <extrafeature name="qfs:genericclass" negate="false"
+                            regexp="false" state="0">TextField</extrafeature>
+              <extrafeature name="qfs:label" negate="false" regexp="false"
+                            state="1">Remember me</extrafeature>
+              <extrafeature name="qfs:originalid" negate="false"
+                            regexp="false" state="0">username</extrafeature>
+              <extrafeature name="qfs:systemclass" negate="false"
+                            regexp="false" state="0">INPUT:TEXT</extrafeature>
+              <extrafeature name="tag" negate="false" regexp="false"
+                            state="0">INPUT:TEXT</extrafeature>
+            </ComponentStep>
+            <ComponentStep class="PasswordField" classcount="1" classindex="0"
+                           feature="_password" height="34" id="password"
+                           name="password" uid="_1mAC" width="300" x="0"
+                           y="100">
+              <extrafeature name="class" negate="false" regexp="false"
+                            state="0">form-control placeholder-no-fix</extrafeature>
+              <extrafeature name="id" negate="false" regexp="false" state="1">password</extrafeature>
+              <extrafeature name="name" negate="false" regexp="false"
+                            state="1">_password</extrafeature>
+              <extrafeature name="qfs:class" negate="false" regexp="false"
+                            state="0">INPUT:PASSWORD</extrafeature>
+              <extrafeature name="qfs:genericclass" negate="false"
+                            regexp="false" state="0">PasswordField</extrafeature>
+              <extrafeature name="qfs:label" negate="false" regexp="false"
+                            state="1">Remember me</extrafeature>
+              <extrafeature name="qfs:originalid" negate="false"
+                            regexp="false" state="0">password</extrafeature>
+              <extrafeature name="qfs:systemclass" negate="false"
+                            regexp="false" state="0">INPUT:PASSWORD</extrafeature>
+              <extrafeature name="qfs:type" negate="false" regexp="false"
+                            state="0">TextField:PasswordField</extrafeature>
+              <extrafeature name="tag" negate="false" regexp="false"
+                            state="0">INPUT:PASSWORD</extrafeature>
+            </ComponentStep>
+            <ComponentStep class="TextField" classcount="1" classindex="0"
+                           feature="query" height="46" id="search-query"
+                           name="search-query" uid="_1mPq" width="377" x="0"
+                           y="0">
+              <extrafeature name="class" negate="false" regexp="false"
+                            state="0">global-search__input</extrafeature>
+              <extrafeature name="id" negate="false" regexp="false" state="1">search-query</extrafeature>
+              <extrafeature name="name" negate="false" regexp="false"
+                            state="1">query</extrafeature>
+              <extrafeature name="qfs:class" negate="false" regexp="false"
+                            state="0">INPUT:TEXT</extrafeature>
+              <extrafeature name="qfs:genericclass" negate="false"
+                            regexp="false" state="0">TextField</extrafeature>
+              <extrafeature name="qfs:label" negate="false" regexp="false"
+                            state="1">Search stores, events or products</extrafeature>
+              <extrafeature name="qfs:originalid" negate="false"
+                            regexp="false" state="0">search-query</extrafeature>
+              <extrafeature name="qfs:systemclass" negate="false"
+                            regexp="false" state="0">INPUT:TEXT</extrafeature>
+              <extrafeature name="tag" negate="false" regexp="false"
+                            state="0">INPUT:TEXT</extrafeature>
+            </ComponentStep>
+            <ComponentStep class="SPAN" classcount="3" classindex="2"
+                           height="47" id="staging.intu.co.uk.span4"
+                           uid="_1mPr" width="91" x="387" y="1">
+              <extrafeature name="class" negate="false" regexp="false"
+                            state="0">global-search__icon</extrafeature>
+              <extrafeature name="qfs:class" negate="false" regexp="false"
+                            state="0">SPAN</extrafeature>
+              <extrafeature name="qfs:systemclass" negate="false"
+                            regexp="false" state="0">SPAN</extrafeature>
+              <extrafeature name="tag" negate="false" regexp="false"
+                            state="0">SPAN</extrafeature>
+              <ComponentStep class="Button" classcount="1" classindex="0"
+                             feature="Search" height="47" id="buttonSearch"
+                             uid="_1mPs" width="91" x="1" y="0">
+                <extrafeature name="class" negate="false" regexp="false"
+                              state="0">button intu</extrafeature>
+                <extrafeature name="qfs:class" negate="false" regexp="false"
+                              state="0">BUTTON:SUBMIT</extrafeature>
+                <extrafeature name="qfs:genericclass" negate="false"
+                              regexp="false" state="0">Button</extrafeature>
+                <extrafeature name="qfs:label" negate="false" regexp="false"
+                              state="1">Search</extrafeature>
+                <extrafeature name="qfs:systemclass" negate="false"
+                              regexp="false" state="0">BUTTON:SUBMIT</extrafeature>
+                <extrafeature name="tag" negate="false" regexp="false"
+                              state="0">BUTTON:SUBMIT</extrafeature>
+              </ComponentStep>
+            </ComponentStep>
+          </ComponentStep>
+          <ComponentStep class="UL" classcount="5" classindex="1" height="939"
+                         id="staging.intu.co.uk.ul" uid="_1mAM" width="225"
+                         x="0" y="86">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">page-sidebar-menu</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">UL</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">UL</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">UL</extrafeature>
+            <ComponentStep class="LI" classcount="23" classindex="8"
+                           height="41" id="staging.intu.co.uk.liStores"
+                           uid="_1mAN" width="225" x="0" y="326">
+              <extrafeature name="qfs:class" negate="false" regexp="false"
+                            state="0">LI</extrafeature>
+              <extrafeature name="qfs:label" negate="false" regexp="false"
+                            state="1">Stores</extrafeature>
+              <extrafeature name="qfs:systemclass" negate="false"
+                            regexp="false" state="0">LI</extrafeature>
+              <extrafeature name="tag" negate="false" regexp="false"
+                            state="0">LI</extrafeature>
+              <ComponentStep class="Link" classcount="1" classindex="0"
+                             feature="Stores" height="41" id="linkStores"
+                             uid="_1mAO" width="225" x="0" y="0">
+                <extrafeature name="filter[intuPageType][value]"
+                              negate="false" regexp="false" state="0">retailer-single</extrafeature>
+                <extrafeature name="href" negate="false" regexp="false"
+                              state="0">https://staging.intu.co.uk/admin/en/intu/core/page/list</extrafeature>
+                <extrafeature name="qfs:class" negate="false" regexp="false"
+                              state="0">A</extrafeature>
+                <extrafeature name="qfs:genericclass" negate="false"
+                              regexp="false" state="0">Link</extrafeature>
+                <extrafeature name="qfs:label" negate="false" regexp="false"
+                              state="1">Stores</extrafeature>
+                <extrafeature name="qfs:systemclass" negate="false"
+                              regexp="false" state="0">A</extrafeature>
+                <extrafeature name="tag" negate="false" regexp="false"
+                              state="0">A</extrafeature>
+              </ComponentStep>
+            </ComponentStep>
+          </ComponentStep>
+          <ComponentStep class="FORM" classcount="2" classindex="1"
+                         height="381" id="staging.intu.co.uk.form2"
+                         uid="_1mAP" width="137" x="1081" y="143">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">sonata-filter-form</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">FORM</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">FORM</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">FORM</extrafeature>
+            <ComponentStep class="Panel" classcount="1" classindex="0"
+                           feature="Filters" height="381" id="panelFilters"
+                           uid="_1mAQ" width="137" x="0" y="0">
+              <extrafeature name="class" negate="false" regexp="false"
+                            state="0">filter_legend</extrafeature>
+              <extrafeature name="qfs:class" negate="false" regexp="false"
+                            state="0">FIELDSET</extrafeature>
+              <extrafeature name="qfs:genericclass" negate="false"
+                            regexp="false" state="0">Panel</extrafeature>
+              <extrafeature name="qfs:systemclass" negate="false"
+                            regexp="false" state="0">FIELDSET</extrafeature>
+              <extrafeature name="qfs:type" negate="false" regexp="false"
+                            state="0">Panel:TitledPanel</extrafeature>
+              <extrafeature name="tag" negate="false" regexp="false"
+                            state="0">FIELDSET</extrafeature>
+              <ComponentStep class="Link" classcount="4" classindex="1"
+                             feature="javascript:void(0)" height="34"
+                             id="linkJavascript:void(0)" uid="_1mAR"
+                             width="150" x="0" y="224">
+                <extrafeature name="class" negate="false" regexp="false"
+                              state="0">select2-choice</extrafeature>
+                <extrafeature name="href" negate="false" regexp="false"
+                              state="0">javascript:void(0)</extrafeature>
+                <extrafeature name="qfs:class" negate="false" regexp="false"
+                              state="0">A</extrafeature>
+                <extrafeature name="qfs:genericclass" negate="false"
+                              regexp="false" state="0">Link</extrafeature>
+                <extrafeature name="qfs:label" negate="false" regexp="false"
+                              state="1">Shopping Centre</extrafeature>
+                <extrafeature name="qfs:systemclass" negate="false"
+                              regexp="false" state="0">A</extrafeature>
+                <extrafeature name="tag" negate="false" regexp="false"
+                              state="0">A</extrafeature>
+              </ComponentStep>
+              <ComponentStep class="Link" classcount="4" classindex="2"
+                             feature="javascript:void(0)" height="34"
+                             id="linkJavascript:void(0)2" uid="_1mAV"
+                             width="150" x="0" y="298">
+                <extrafeature name="class" negate="false" regexp="false"
+                              state="0">select2-choice</extrafeature>
+                <extrafeature name="href" negate="false" regexp="false"
+                              state="0">javascript:void(0)</extrafeature>
+                <extrafeature name="qfs:class" negate="false" regexp="false"
+                              state="0">A</extrafeature>
+                <extrafeature name="qfs:genericclass" negate="false"
+                              regexp="false" state="0">Link</extrafeature>
+                <extrafeature name="qfs:label" negate="false" regexp="false"
+                              state="1">Popular</extrafeature>
+                <extrafeature name="qfs:systemclass" negate="false"
+                              regexp="false" state="0">A</extrafeature>
+                <extrafeature name="tag" negate="false" regexp="false"
+                              state="0">A</extrafeature>
+              </ComponentStep>
+              <ComponentStep class="Button" classcount="1" classindex="0"
+                             height="34" id="panelFilters.buttonFilter"
+                             uid="_1mAZ" width="69" x="0" y="347">
+                <extrafeature name="class" negate="false" regexp="false"
+                              state="0">btn col-lg-6</extrafeature>
+                <extrafeature name="qfs:class" negate="false" regexp="false"
+                              state="0">INPUT:SUBMIT</extrafeature>
+                <extrafeature name="qfs:genericclass" negate="false"
+                              regexp="false" state="0">Button</extrafeature>
+                <extrafeature name="qfs:label" negate="false" regexp="false"
+                              state="1">Filter</extrafeature>
+                <extrafeature name="qfs:systemclass" negate="false"
+                              regexp="false" state="0">INPUT:SUBMIT</extrafeature>
+                <extrafeature name="tag" negate="false" regexp="false"
+                              state="0">INPUT:SUBMIT</extrafeature>
+                <extrafeature name="value" negate="false" regexp="false"
+                              state="1">Filter</extrafeature>
+              </ComponentStep>
+            </ComponentStep>
+          </ComponentStep>
+          <ComponentStep class="UL" classcount="4" classindex="3" height="200"
+                         id="staging.intu.co.uk.ul2" uid="_1mAS" width="148"
+                         x="1082" y="167">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">select2-results</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">UL</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">UL</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">UL</extrafeature>
+            <ComponentStep class="LI" classcount="15" classindex="2"
+                           height="26"
+                           id="staging.intu.co.uk.liIntu_Chapelfield"
+                           uid="_1mAT" width="128" x="4" y="47">
+              <extrafeature name="class" negate="false" regexp="false"
+                            state="0">select2-results-dept-0 select2-result select2-result-selectable select2-highlighted</extrafeature>
+              <extrafeature name="qfs:class" negate="false" regexp="false"
+                            state="0">LI</extrafeature>
+              <extrafeature name="qfs:label" negate="false" regexp="false"
+                            state="1">intu Chapelfield</extrafeature>
+              <extrafeature name="qfs:systemclass" negate="false"
+                            regexp="false" state="0">LI</extrafeature>
+              <extrafeature name="tag" negate="false" regexp="false"
+                            state="0">LI</extrafeature>
+              <ComponentStep class="DIV" classcount="1" classindex="0"
+                             height="26" id="staging.intu.co.uk.div"
+                             uid="_1mAU" width="128" x="0" y="0">
+                <extrafeature name="class" negate="false" regexp="false"
+                              state="0">select2-result-label</extrafeature>
+                <extrafeature name="qfs:class" negate="false" regexp="false"
+                              state="0">DIV</extrafeature>
+                <extrafeature name="qfs:systemclass" negate="false"
+                              regexp="false" state="0">DIV</extrafeature>
+                <extrafeature name="tag" negate="false" regexp="false"
+                              state="0">DIV</extrafeature>
+              </ComponentStep>
+            </ComponentStep>
+          </ComponentStep>
+          <ComponentStep class="UL" classcount="5" classindex="4" height="51"
+                         id="staging.intu.co.uk.ul3" uid="_1mAW" width="148"
+                         x="1082" y="474">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">select2-results</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">UL</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">UL</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">UL</extrafeature>
+            <ComponentStep class="LI" classcount="2" classindex="0"
+                           height="26" id="staging.intu.co.uk.liYes"
+                           uid="_1mAX" width="144" x="4" y="0">
+              <extrafeature name="class" negate="false" regexp="false"
+                            state="0">select2-results-dept-0 select2-result select2-result-selectable select2-highlighted</extrafeature>
+              <extrafeature name="qfs:class" negate="false" regexp="false"
+                            state="0">LI</extrafeature>
+              <extrafeature name="qfs:label" negate="false" regexp="false"
+                            state="1">Yes</extrafeature>
+              <extrafeature name="qfs:systemclass" negate="false"
+                            regexp="false" state="0">LI</extrafeature>
+              <extrafeature name="tag" negate="false" regexp="false"
+                            state="0">LI</extrafeature>
+              <ComponentStep class="DIV" classcount="1" classindex="0"
+                             height="26" id="staging.intu.co.uk.div2"
+                             uid="_1mAY" width="144" x="0" y="0">
+                <extrafeature name="class" negate="false" regexp="false"
+                              state="0">select2-result-label</extrafeature>
+                <extrafeature name="qfs:class" negate="false" regexp="false"
+                              state="0">DIV</extrafeature>
+                <extrafeature name="qfs:systemclass" negate="false"
+                              regexp="false" state="0">DIV</extrafeature>
+                <extrafeature name="tag" negate="false" regexp="false"
+                              state="0">DIV</extrafeature>
+              </ComponentStep>
+            </ComponentStep>
+            <ComponentStep class="LI" classcount="2" classindex="0"
+                           height="42" id="staging.intu.co.uk.liPopular2"
+                           uid="_1mJl" width="99" x="0" y="0">
+              <extrafeature name="class" negate="false" regexp="false"
+                            state="0">popular-tab</extrafeature>
+              <extrafeature name="qfs:class" negate="false" regexp="false"
+                            state="0">LI</extrafeature>
+              <extrafeature name="qfs:label" negate="false" regexp="false"
+                            state="1">Popular</extrafeature>
+              <extrafeature name="qfs:systemclass" negate="false"
+                            regexp="false" state="0">LI</extrafeature>
+              <extrafeature name="tag" negate="false" regexp="false"
+                            state="0">LI</extrafeature>
+            </ComponentStep>
+            <ComponentStep class="LI" classcount="2" classindex="1"
+                           height="49"
+                           id="staging.intu.co.uk.liAll_Restaurants2"
+                           uid="_1mP6" width="183" x="113" y="0">
+              <extrafeature name="class" negate="false" regexp="false"
+                            state="0">all-restaurants-tab</extrafeature>
+              <extrafeature name="qfs:class" negate="false" regexp="false"
+                            state="0">LI</extrafeature>
+              <extrafeature name="qfs:label" negate="false" regexp="false"
+                            state="1">All Restaurants</extrafeature>
+              <extrafeature name="qfs:systemclass" negate="false"
+                            regexp="false" state="0">LI</extrafeature>
+              <extrafeature name="tag" negate="false" regexp="false"
+                            state="0">LI</extrafeature>
+            </ComponentStep>
+            <ComponentStep class="LI" classcount="2" classindex="1"
+                           height="49" id="staging.intu.co.uk.liAll_Stores2"
+                           uid="_1mQP" width="131" x="113" y="0">
+              <extrafeature name="class" negate="false" regexp="false"
+                            state="0">all-stores-tab</extrafeature>
+              <extrafeature name="qfs:class" negate="false" regexp="false"
+                            state="0">LI</extrafeature>
+              <extrafeature name="qfs:label" negate="false" regexp="false"
+                            state="1">All Stores</extrafeature>
+              <extrafeature name="qfs:systemclass" negate="false"
+                            regexp="false" state="0">LI</extrafeature>
+              <extrafeature name="tag" negate="false" regexp="false"
+                            state="0">LI</extrafeature>
+            </ComponentStep>
+          </ComponentStep>
+          <ComponentStep class="FORM" classcount="4" classindex="0"
+                         height="8279" id="staging.intu.co.uk.form3"
+                         uid="_1mB1" width="952" x="256" y="227">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">form-horizontal ng-pristine ng-valid</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">FORM</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">FORM</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">FORM</extrafeature>
+            <ComponentStep class="Panel" classcount="2" classindex="0"
+                           height="8132" id="staging.intu.co.uk.panel"
+                           uid="_1mB2" width="952" x="0" y="52">
+              <extrafeature name="qfs:class" negate="false" regexp="false"
+                            state="0">FIELDSET</extrafeature>
+              <extrafeature name="qfs:genericclass" negate="false"
+                            regexp="false" state="0">Panel</extrafeature>
+              <extrafeature name="qfs:systemclass" negate="false"
+                            regexp="false" state="0">FIELDSET</extrafeature>
+              <extrafeature name="tag" negate="false" regexp="false"
+                            state="0">FIELDSET</extrafeature>
+              <ComponentStep class="SPAN" classcount="27" classindex="19"
+                             height="19" id="staging.intu.co.uk.span"
+                             uid="_1mB3" width="19" x="248" y="7831">
+                <extrafeature name="class" negate="false" regexp="false"
+                              state="0">checked</extrafeature>
+                <extrafeature name="qfs:class" negate="false" regexp="false"
+                              state="0">SPAN</extrafeature>
+                <extrafeature name="qfs:systemclass" negate="false"
+                              regexp="false" state="0">SPAN</extrafeature>
+                <extrafeature name="tag" negate="false" regexp="false"
+                              state="0">SPAN</extrafeature>
+                <ComponentStep class="CheckBox" classcount="1" classindex="0"
+                               feature=".*[popular]" height="19"
+                               id="secbff_popular" regexp="true" uid="_1mB4"
+                               width="19" x="0" y="0">
+                  <extrafeature name="id" negate="false" regexp="false"
+                                state="1">secbff_popular</extrafeature>
+                  <extrafeature name="name" negate="false" regexp="false"
+                                state="1">s593e4c9b0f2f8[popular]</extrafeature>
+                  <extrafeature name="qfs:class" negate="false" regexp="false"
+                                state="0">INPUT:CHECKBOX</extrafeature>
+                  <extrafeature name="qfs:genericclass" negate="false"
+                                regexp="false" state="0">CheckBox</extrafeature>
+                  <extrafeature name="qfs:label" negate="false" regexp="false"
+                                state="1">Popular store (Image required first)</extrafeature>
+                  <extrafeature name="qfs:originalid" negate="false"
+                                regexp="false" state="0">s593e4c9b0f2f8_popular</extrafeature>
+                  <extrafeature name="qfs:systemclass" negate="false"
+                                regexp="false" state="0">INPUT:CHECKBOX</extrafeature>
+                  <extrafeature name="tag" negate="false" regexp="false"
+                                state="0">INPUT:CHECKBOX</extrafeature>
+                  <extrafeature name="value" negate="false" regexp="false"
+                                state="1">1</extrafeature>
+                </ComponentStep>
+                <ComponentStep class="CheckBox" classcount="1" classindex="0"
+                               feature=".*[popular]" height="19"
+                               id="seabd_popular" regexp="true" uid="_1mCC"
+                               width="19" x="0" y="0">
+                  <extrafeature name="id" negate="false" regexp="false"
+                                state="1">seabd_popular</extrafeature>
+                  <extrafeature name="name" negate="false" regexp="false"
+                                state="1">s593e81ab0582d[popular]</extrafeature>
+                  <extrafeature name="qfs:class" negate="false" regexp="false"
+                                state="0">INPUT:CHECKBOX</extrafeature>
+                  <extrafeature name="qfs:genericclass" negate="false"
+                                regexp="false" state="0">CheckBox</extrafeature>
+                  <extrafeature name="qfs:label" negate="false" regexp="false"
+                                state="1">Popular store (Image required first)</extrafeature>
+                  <extrafeature name="qfs:originalid" negate="false"
+                                regexp="false" state="0">s593e81ab0582d_popular</extrafeature>
+                  <extrafeature name="qfs:systemclass" negate="false"
+                                regexp="false" state="0">INPUT:CHECKBOX</extrafeature>
+                  <extrafeature name="tag" negate="false" regexp="false"
+                                state="0">INPUT:CHECKBOX</extrafeature>
+                  <extrafeature name="value" negate="false" regexp="false"
+                                state="1">1</extrafeature>
+                </ComponentStep>
+                <ComponentStep class="CheckBox" classcount="1" classindex="0"
+                               feature="s593fe36ec3397[popular]" height="19"
+                               id="sfeec_popular" name="sfeec_popular"
+                               uid="_1mNF" width="19" x="0" y="0">
+                  <extrafeature name="id" negate="false" regexp="false"
+                                state="1">sfeec_popular</extrafeature>
+                  <extrafeature name="name" negate="false" regexp="false"
+                                state="1">s593fe36ec3397[popular]</extrafeature>
+                  <extrafeature name="qfs:class" negate="false" regexp="false"
+                                state="0">INPUT:CHECKBOX</extrafeature>
+                  <extrafeature name="qfs:genericclass" negate="false"
+                                regexp="false" state="0">CheckBox</extrafeature>
+                  <extrafeature name="qfs:label" negate="false" regexp="false"
+                                state="1">Popular store (Image required first)</extrafeature>
+                  <extrafeature name="qfs:originalid" negate="false"
+                                regexp="false" state="0">s593fe36ec3397_popular</extrafeature>
+                  <extrafeature name="qfs:systemclass" negate="false"
+                                regexp="false" state="0">INPUT:CHECKBOX</extrafeature>
+                  <extrafeature name="tag" negate="false" regexp="false"
+                                state="0">INPUT:CHECKBOX</extrafeature>
+                  <extrafeature name="value" negate="false" regexp="false"
+                                state="1">1</extrafeature>
+                </ComponentStep>
+              </ComponentStep>
+              <ComponentStep class="DIV" classcount="68" classindex="50"
+                             feature="sonata-ba-field-container-seabd_popular"
+                             height="47"
+                             id="sonata-ba-field-container-seabd_popular"
+                             name="sonata-ba-field-container-seabd_popular"
+                             uid="_1mCF" width="982" x="-15" y="7850">
+                <extrafeature name="class" negate="false" regexp="false"
+                              state="0">form-group</extrafeature>
+                <extrafeature name="id" negate="false" regexp="false"
+                              state="1">sonata-ba-field-container-seabd_popular</extrafeature>
+                <extrafeature name="qfs:class" negate="false" regexp="false"
+                              state="0">DIV</extrafeature>
+                <extrafeature name="qfs:originalid" negate="false"
+                              regexp="false" state="0">sonata-ba-field-container-s593e81ab0582d_popular</extrafeature>
+                <extrafeature name="qfs:systemclass" negate="false"
+                              regexp="false" state="0">DIV</extrafeature>
+                <extrafeature name="tag" negate="false" regexp="false"
+                              state="0">DIV</extrafeature>
+              </ComponentStep>
+              <ComponentStep class="SPAN" classcount="27" classindex="26"
+                             feature="field_actions_sfeea_hubConfiguration"
+                             height="15"
+                             id="field_actions_sfeea_hubConfiguration"
+                             name="field_actions_sfeea_hubConfiguration"
+                             uid="_1mNL" width="132" x="320" y="8109">
+                <extrafeature name="class" negate="false" regexp="false"
+                              state="0">field-actions</extrafeature>
+                <extrafeature name="id" negate="false" regexp="false"
+                              state="1">field_actions_sfeea_hubConfiguration</extrafeature>
+                <extrafeature name="qfs:class" negate="false" regexp="false"
+                              state="0">SPAN</extrafeature>
+                <extrafeature name="qfs:originalid" negate="false"
+                              regexp="false" state="0">field_actions_s593fe40e8a484_hubConfiguration</extrafeature>
+                <extrafeature name="qfs:systemclass" negate="false"
+                              regexp="false" state="0">SPAN</extrafeature>
+                <extrafeature name="tag" negate="false" regexp="false"
+                              state="0">SPAN</extrafeature>
+                <ComponentStep class="Link" classcount="2" classindex="0"
+                               feature="List" height="34" id="linkList"
+                               uid="_1mNM" width="50" x="0" y="-8">
+                  <extrafeature name="class" negate="false" regexp="false"
+                                state="0">btn sonata-ba-action btn-list</extrafeature>
+                  <extrafeature name="code" negate="false" regexp="false"
+                                state="0">intu_core.admin.hub_page_configuration</extrafeature>
+                  <extrafeature name="href" negate="false" regexp="false"
+                                state="0">https://staging.intu.co.uk/admin/en/intu/core/hubpageconfiguration/list</extrafeature>
+                  <extrafeature name="pcode" negate="false" regexp="false"
+                                state="0">presta_cms.admin.page</extrafeature>
+                  <extrafeature name="puniqid" negate="false" regexp="false"
+                                state="0">s593fe40eae6b5</extrafeature>
+                  <extrafeature name="qfs:class" negate="false" regexp="false"
+                                state="0">A</extrafeature>
+                  <extrafeature name="qfs:genericclass" negate="false"
+                                regexp="false" state="0">Link</extrafeature>
+                  <extrafeature name="qfs:label" negate="false" regexp="false"
+                                state="1">List</extrafeature>
+                  <extrafeature name="qfs:systemclass" negate="false"
+                                regexp="false" state="0">A</extrafeature>
+                  <extrafeature name="tag" negate="false" regexp="false"
+                                state="0">A</extrafeature>
+                  <extrafeature name="uniqid" negate="false" regexp="false"
+                                state="0">s593fe40eae633</extrafeature>
+                </ComponentStep>
+                <ComponentStep class="Link" classcount="2" classindex="1"
+                               feature="Add new" height="34" id="linkAdd_new"
+                               uid="_1mNN" width="82" x="50" y="-8">
+                  <extrafeature name="class" negate="false" regexp="false"
+                                state="0">btn sonata-ba-action btn-create</extrafeature>
+                  <extrafeature name="code" negate="false" regexp="false"
+                                state="0">intu_core.admin.hub_page_configuration</extrafeature>
+                  <extrafeature name="href" negate="false" regexp="false"
+                                state="0">https://staging.intu.co.uk/admin/en/intu/core/hubpageconfiguration/create</extrafeature>
+                  <extrafeature name="pcode" negate="false" regexp="false"
+                                state="0">presta_cms.admin.page</extrafeature>
+                  <extrafeature name="puniqid" negate="false" regexp="false"
+                                state="0">s593fe40eae6b5</extrafeature>
+                  <extrafeature name="qfs:class" negate="false" regexp="false"
+                                state="0">A</extrafeature>
+                  <extrafeature name="qfs:genericclass" negate="false"
+                                regexp="false" state="0">Link</extrafeature>
+                  <extrafeature name="qfs:label" negate="false" regexp="false"
+                                state="1">Add new</extrafeature>
+                  <extrafeature name="qfs:systemclass" negate="false"
+                                regexp="false" state="0">A</extrafeature>
+                  <extrafeature name="tag" negate="false" regexp="false"
+                                state="0">A</extrafeature>
+                  <extrafeature name="uniqid" negate="false" regexp="false"
+                                state="0">s593fe40eae633</extrafeature>
+                </ComponentStep>
+              </ComponentStep>
+              <ComponentStep class="Label" classcount="19" classindex="18"
+                             feature="Hub Page Configuration" height="27"
+                             id="labelHub_Page_Configuration" uid="_1mNQ"
+                             width="245" x="-15" y="8101">
+                <extrafeature name="class" negate="false" regexp="false"
+                              state="0">control-label col-sm-3</extrafeature>
+                <extrafeature name="qfs:class" negate="false" regexp="false"
+                              state="0">LABEL</extrafeature>
+                <extrafeature name="qfs:genericclass" negate="false"
+                              regexp="false" state="0">Label</extrafeature>
+                <extrafeature name="qfs:label" negate="false" regexp="false"
+                              state="1">Hub Page Configuration</extrafeature>
+                <extrafeature name="qfs:systemclass" negate="false"
+                              regexp="false" state="0">LABEL</extrafeature>
+                <extrafeature name="tag" negate="false" regexp="false"
+                              state="0">LABEL</extrafeature>
+              </ComponentStep>
+              <ComponentStep class="Label" classcount="19" classindex="17"
+                             feature="Retailer" height="27" id="labelRetailer"
+                             uid="_1mNR" width="245" x="-15" y="8052">
+                <extrafeature name="class" negate="false" regexp="false"
+                              state="0">control-label col-sm-3</extrafeature>
+                <extrafeature name="qfs:class" negate="false" regexp="false"
+                              state="0">LABEL</extrafeature>
+                <extrafeature name="qfs:genericclass" negate="false"
+                              regexp="false" state="0">Label</extrafeature>
+                <extrafeature name="qfs:label" negate="false" regexp="false"
+                              state="1">Retailer</extrafeature>
+                <extrafeature name="qfs:systemclass" negate="false"
+                              regexp="false" state="0">LABEL</extrafeature>
+                <extrafeature name="tag" negate="false" regexp="false"
+                              state="0">LABEL</extrafeature>
+              </ComponentStep>
+              <ComponentStep class="SPAN" classcount="27" classindex="21"
+                             feature="field_widget_sfeea_retailer" height="15"
+                             id="field_widget_sfeea_retailer"
+                             name="field_widget_sfeea_retailer" uid="_1mNd"
+                             width="34" x="245" y="8060">
+                <extrafeature name="id" negate="false" regexp="false"
+                              state="1">field_widget_sfeea_retailer</extrafeature>
+                <extrafeature name="qfs:class" negate="false" regexp="false"
+                              state="0">SPAN</extrafeature>
+                <extrafeature name="qfs:originalid" negate="false"
+                              regexp="false" state="0">field_widget_s593fe40e8a484_retailer</extrafeature>
+                <extrafeature name="qfs:systemclass" negate="false"
+                              regexp="false" state="0">SPAN</extrafeature>
+                <extrafeature name="tag" negate="false" regexp="false"
+                              state="0">SPAN</extrafeature>
+                <ComponentStep class="SPAN" classcount="1" classindex="0"
+                               height="15"
+                               id="field_widget_sfeea_retailer.span"
+                               uid="_1mNe" width="34" x="0" y="0">
+                  <extrafeature name="class" negate="false" regexp="false"
+                                state="0">inner-field-short-description</extrafeature>
+                  <extrafeature name="qfs:class" negate="false" regexp="false"
+                                state="0">SPAN</extrafeature>
+                  <extrafeature name="qfs:systemclass" negate="false"
+                                regexp="false" state="0">SPAN</extrafeature>
+                  <extrafeature name="tag" negate="false" regexp="false"
+                                state="0">SPAN</extrafeature>
+                  <ComponentStep class="Link" classcount="1" classindex="0"
+                                 feature="Byron" height="15" id="linkByron"
+                                 uid="_1mNf" width="34" x="0" y="0">
+                    <extrafeature name="href" negate="false" regexp="false"
+                                  state="0">https://staging.intu.co.uk/admin/en/intu/retailer/retailer/2002/edit</extrafeature>
+                    <extrafeature name="qfs:class" negate="false"
+                                  regexp="false" state="0">A</extrafeature>
+                    <extrafeature name="qfs:genericclass" negate="false"
+                                  regexp="false" state="0">Link</extrafeature>
+                    <extrafeature name="qfs:label" negate="false"
+                                  regexp="false" state="1">Byron</extrafeature>
+                    <extrafeature name="qfs:systemclass" negate="false"
+                                  regexp="false" state="0">A</extrafeature>
+                    <extrafeature name="tag" negate="false" regexp="false"
+                                  state="0">A</extrafeature>
+                  </ComponentStep>
+                </ComponentStep>
+              </ComponentStep>
+              <ComponentStep class="SPAN" classcount="27" classindex="23"
+                             feature="field_actions_sfeea_retailer"
+                             height="15" id="field_actions_sfeea_retailer"
+                             name="field_actions_sfeea_retailer" uid="_1mNg"
+                             width="132" x="279" y="8060">
+                <extrafeature name="class" negate="false" regexp="false"
+                              state="0">field-actions</extrafeature>
+                <extrafeature name="id" negate="false" regexp="false"
+                              state="1">field_actions_sfeea_retailer</extrafeature>
+                <extrafeature name="qfs:class" negate="false" regexp="false"
+                              state="0">SPAN</extrafeature>
+                <extrafeature name="qfs:originalid" negate="false"
+                              regexp="false" state="0">field_actions_s593fe40e8a484_retailer</extrafeature>
+                <extrafeature name="qfs:systemclass" negate="false"
+                              regexp="false" state="0">SPAN</extrafeature>
+                <extrafeature name="tag" negate="false" regexp="false"
+                              state="0">SPAN</extrafeature>
+                <ComponentStep class="Link" classcount="2" classindex="0"
+                               feature="List" height="34" id="linkList2"
+                               uid="_1mNh" width="50" x="0" y="-8">
+                  <extrafeature name="class" negate="false" regexp="false"
+                                state="0">btn sonata-ba-action btn-list</extrafeature>
+                  <extrafeature name="code" negate="false" regexp="false"
+                                state="0">intu_retailer.admin.retailer</extrafeature>
+                  <extrafeature name="href" negate="false" regexp="false"
+                                state="0">https://staging.intu.co.uk/admin/en/intu/retailer/retailer/list</extrafeature>
+                  <extrafeature name="pcode" negate="false" regexp="false"
+                                state="0">presta_cms.admin.page</extrafeature>
+                  <extrafeature name="puniqid" negate="false" regexp="false"
+                                state="0">s593fe40ead93f</extrafeature>
+                  <extrafeature name="qfs:class" negate="false" regexp="false"
+                                state="0">A</extrafeature>
+                  <extrafeature name="qfs:genericclass" negate="false"
+                                regexp="false" state="0">Link</extrafeature>
+                  <extrafeature name="qfs:label" negate="false" regexp="false"
+                                state="1">List</extrafeature>
+                  <extrafeature name="qfs:systemclass" negate="false"
+                                regexp="false" state="0">A</extrafeature>
+                  <extrafeature name="tag" negate="false" regexp="false"
+                                state="0">A</extrafeature>
+                  <extrafeature name="uniqid" negate="false" regexp="false"
+                                state="0">s593fe40eaa7c4</extrafeature>
+                </ComponentStep>
+                <ComponentStep class="Link" classcount="2" classindex="1"
+                               feature="Add new" height="34" id="linkAdd_new2"
+                               uid="_1mNi" width="82" x="50" y="-8">
+                  <extrafeature name="class" negate="false" regexp="false"
+                                state="0">btn sonata-ba-action btn-create</extrafeature>
+                  <extrafeature name="code" negate="false" regexp="false"
+                                state="0">intu_retailer.admin.retailer</extrafeature>
+                  <extrafeature name="href" negate="false" regexp="false"
+                                state="0">https://staging.intu.co.uk/admin/en/intu/retailer/retailer/create</extrafeature>
+                  <extrafeature name="pcode" negate="false" regexp="false"
+                                state="0">presta_cms.admin.page</extrafeature>
+                  <extrafeature name="puniqid" negate="false" regexp="false"
+                                state="0">s593fe40ead93f</extrafeature>
+                  <extrafeature name="qfs:class" negate="false" regexp="false"
+                                state="0">A</extrafeature>
+                  <extrafeature name="qfs:genericclass" negate="false"
+                                regexp="false" state="0">Link</extrafeature>
+                  <extrafeature name="qfs:label" negate="false" regexp="false"
+                                state="1">Add new</extrafeature>
+                  <extrafeature name="qfs:systemclass" negate="false"
+                                regexp="false" state="0">A</extrafeature>
+                  <extrafeature name="tag" negate="false" regexp="false"
+                                state="0">A</extrafeature>
+                  <extrafeature name="uniqid" negate="false" regexp="false"
+                                state="0">s593fe40eaa7c4</extrafeature>
+                </ComponentStep>
+              </ComponentStep>
+              <ComponentStep class="SPAN" classcount="24" classindex="16"
+                             height="24" id="staging.intu.co.uk.span3"
+                             uid="_1mNx" width="19" x="246" y="7921">
+                <extrafeature name="qfs:class" negate="false" regexp="false"
+                              state="0">SPAN</extrafeature>
+                <extrafeature name="qfs:systemclass" negate="false"
+                              regexp="false" state="0">SPAN</extrafeature>
+                <extrafeature name="tag" negate="false" regexp="false"
+                              state="0">SPAN</extrafeature>
+                <ComponentStep class="CheckBox" classcount="1" classindex="0"
+                               feature=".*[popular]" height="19"
+                               id="sbbef_popular" regexp="true" uid="_1mNy"
+                               width="19" x="0" y="0">
+                  <extrafeature name="id" negate="false" regexp="false"
+                                state="1">sbbef_popular</extrafeature>
+                  <extrafeature name="name" negate="false" regexp="false"
+                                state="1">s59400bb2e812f[popular]</extrafeature>
+                  <extrafeature name="qfs:class" negate="false" regexp="false"
+                                state="0">INPUT:CHECKBOX</extrafeature>
+                  <extrafeature name="qfs:genericclass" negate="false"
+                                regexp="false" state="0">CheckBox</extrafeature>
+                  <extrafeature name="qfs:label" negate="false" regexp="false"
+                                state="1">Popular store (Image required first)</extrafeature>
+                  <extrafeature name="qfs:originalid" negate="false"
+                                regexp="false" state="0">s59400bb2e812f_popular</extrafeature>
+                  <extrafeature name="qfs:systemclass" negate="false"
+                                regexp="false" state="0">INPUT:CHECKBOX</extrafeature>
+                  <extrafeature name="tag" negate="false" regexp="false"
+                                state="0">INPUT:CHECKBOX</extrafeature>
+                  <extrafeature name="value" negate="false" regexp="false"
+                                state="1">1</extrafeature>
+                </ComponentStep>
+              </ComponentStep>
+            </ComponentStep>
+            <ComponentStep class="Button" classcount="2" classindex="0"
+                           feature="btn_update_and_edit" height="34"
+                           id="buttonBtn_update_and_edit" uid="_1mBK"
+                           width="90" x="11" y="8223">
+              <extrafeature name="class" negate="false" regexp="false"
+                            state="0">btn intu-orange</extrafeature>
+              <extrafeature name="name" negate="false" regexp="false"
+                            state="1">btn_update_and_edit</extrafeature>
+              <extrafeature name="qfs:class" negate="false" regexp="false"
+                            state="0">BUTTON:SUBMIT</extrafeature>
+              <extrafeature name="qfs:genericclass" negate="false"
+                            regexp="false" state="0">Button</extrafeature>
+              <extrafeature name="qfs:label" negate="false" regexp="false"
+                            state="1">Update</extrafeature>
+              <extrafeature name="qfs:systemclass" negate="false"
+                            regexp="false" state="0">BUTTON:SUBMIT</extrafeature>
+              <extrafeature name="tag" negate="false" regexp="false"
+                            state="0">BUTTON:SUBMIT</extrafeature>
+            </ComponentStep>
+            <ComponentStep class="Button" classcount="2" classindex="1"
+                           feature="btn_update_and_list" height="34"
+                           id="buttonBtn_update_and_list" uid="_1mNO"
+                           width="137" x="101" y="8241">
+              <extrafeature name="class" negate="false" regexp="false"
+                            state="0">btn</extrafeature>
+              <extrafeature name="name" negate="false" regexp="false"
+                            state="1">btn_update_and_list</extrafeature>
+              <extrafeature name="qfs:class" negate="false" regexp="false"
+                            state="0">INPUT:SUBMIT</extrafeature>
+              <extrafeature name="qfs:genericclass" negate="false"
+                            regexp="false" state="0">Button</extrafeature>
+              <extrafeature name="qfs:label" negate="false" regexp="false"
+                            state="1">Update and close</extrafeature>
+              <extrafeature name="qfs:systemclass" negate="false"
+                            regexp="false" state="0">INPUT:SUBMIT</extrafeature>
+              <extrafeature name="tag" negate="false" regexp="false"
+                            state="0">INPUT:SUBMIT</extrafeature>
+              <extrafeature name="value" negate="false" regexp="false"
+                            state="1">Update and close</extrafeature>
+            </ComponentStep>
+            <ComponentStep class="Link" classcount="1" classindex="0"
+                           feature="Delete" height="34" id="linkDelete"
+                           uid="_1mNP" width="83" x="256" y="8241">
+              <extrafeature name="class" negate="false" regexp="false"
+                            state="0">btn btn-danger</extrafeature>
+              <extrafeature name="href" negate="false" regexp="false"
+                            state="0">https://staging.intu.co.uk/admin/en/intu/core/page/website/www.intu.co.uk/page/chapelfield/stores/byron/delete</extrafeature>
+              <extrafeature name="qfs:class" negate="false" regexp="false"
+                            state="0">A</extrafeature>
+              <extrafeature name="qfs:genericclass" negate="false"
+                            regexp="false" state="0">Link</extrafeature>
+              <extrafeature name="qfs:label" negate="false" regexp="false"
+                            state="1">Delete</extrafeature>
+              <extrafeature name="qfs:systemclass" negate="false"
+                            regexp="false" state="0">A</extrafeature>
+              <extrafeature name="tag" negate="false" regexp="false"
+                            state="0">A</extrafeature>
+            </ComponentStep>
+          </ComponentStep>
+          <ComponentStep class="DIV" classcount="42" classindex="8"
+                         height="8548" id="staging.intu.co.uk.div3"
+                         uid="_1mCN" width="1238" x="0" y="42">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">page-content-wrapper</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">DIV</extrafeature>
+          </ComponentStep>
+          <ComponentStep class="UL" classcount="1" classindex="0" height="27"
+                         id="staging.intu.co.uk.ul4" uid="_1mDi" width="900"
+                         x="-13" y="83">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">global-nav__list</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">UL</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">UL</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">UL</extrafeature>
+            <ComponentStep class="LI" classcount="5" classindex="1"
+                           height="27"
+                           id="staging.intu.co.uk.liShopping_centres_intu_Braehead_intu_Broadmarsh_intu_Chapelfield_intu_Derby_intu_Eldon_Square_intu_Lakeside_intu_Merry_Hill_intu_Metrocentre_intu_Milton_Keynes_intu_Potteries_intu_Trafford_Centre_intu_Uxbridge_intu_Victoria_Centre_intu_Watford_intu_Lakeside_stores_food___drink_what's_on_offers_leisure_families_centre_info"
+                           uid="_1mDj" width="166" x="198" y="0">
+              <extrafeature name="class" negate="false" regexp="false"
+                            state="0">dropdown</extrafeature>
+              <extrafeature name="qfs:class" negate="false" regexp="false"
+                            state="0">LI</extrafeature>
+              <extrafeature name="qfs:label" negate="false" regexp="false"
+                            state="1">shopping centres
+intu Braehead
+intu Broadmarsh
+intu Chapelfield
+intu Derby
+intu Eldon Square
+intu Lakeside
+intu Merry Hill
+intu Metrocentre
+intu Milton Keynes
+intu Potteries
+intu Trafford Centre
+intu Uxbridge
+intu Victoria Centre
+intu Watford
+intu Lakeside
+stores
+food &amp; drink
+what's on
+offers
+leisure
+families
+centre info</extrafeature>
+              <extrafeature name="qfs:systemclass" negate="false"
+                            regexp="false" state="0">LI</extrafeature>
+              <extrafeature name="tag" negate="false" regexp="false"
+                            state="0">LI</extrafeature>
+              <ComponentStep class="DL" classcount="1" classindex="0"
+                             height="518" id="staging.intu.co.uk.dl"
+                             uid="_1mDk" width="192" x="1" y="33">
+                <extrafeature name="class" negate="false" regexp="false"
+                              state="0">tabs vertical</extrafeature>
+                <extrafeature name="qfs:class" negate="false" regexp="false"
+                              state="0">DL</extrafeature>
+                <extrafeature name="qfs:systemclass" negate="false"
+                              regexp="false" state="0">DL</extrafeature>
+                <extrafeature name="tag" negate="false" regexp="false"
+                              state="0">DL</extrafeature>
+                <ComponentStep class="DD" classcount="14" classindex="5"
+                               height="38" id="staging.intu.co.uk.dd"
+                               uid="_1mDl" width="192" x="0" y="185">
+                  <extrafeature name="class" negate="false" regexp="false"
+                                state="0">dropdown active</extrafeature>
+                  <extrafeature name="qfs:class" negate="false" regexp="false"
+                                state="0">DD</extrafeature>
+                  <extrafeature name="qfs:systemclass" negate="false"
+                                regexp="false" state="0">DD</extrafeature>
+                  <extrafeature name="tag" negate="false" regexp="false"
+                                state="0">DD</extrafeature>
+                  <ComponentStep class="Link" classcount="1" classindex="0"
+                                 feature="intu Lakeside" height="38"
+                                 id="linkIntu_Lakeside" uid="_1mDm"
+                                 width="192" x="0" y="0">
+                    <extrafeature name="class" negate="false" regexp="false"
+                                  state="0">dropdown-toggle js-ga-event</extrafeature>
+                    <extrafeature name="href" negate="false" regexp="false"
+                                  state="0">https://staging.intu.co.uk/lakeside</extrafeature>
+                    <extrafeature name="qfs:class" negate="false"
+                                  regexp="false" state="0">A</extrafeature>
+                    <extrafeature name="qfs:genericclass" negate="false"
+                                  regexp="false" state="0">Link</extrafeature>
+                    <extrafeature name="qfs:label" negate="false"
+                                  regexp="false" state="1">intu Lakeside</extrafeature>
+                    <extrafeature name="qfs:systemclass" negate="false"
+                                  regexp="false" state="0">A</extrafeature>
+                    <extrafeature name="tag" negate="false" regexp="false"
+                                  state="0">A</extrafeature>
+                  </ComponentStep>
+                </ComponentStep>
+              </ComponentStep>
+              <ComponentStep class="UL" classcount="28" classindex="10"
+                             height="168" id="staging.intu.co.uk.ul5"
+                             uid="_1mDp" width="192" x="224" y="229">
+                <extrafeature name="class" negate="false" regexp="false"
+                              state="0">megamenu__links</extrafeature>
+                <extrafeature name="qfs:class" negate="false" regexp="false"
+                              state="0">UL</extrafeature>
+                <extrafeature name="qfs:systemclass" negate="false"
+                              regexp="false" state="0">UL</extrafeature>
+                <extrafeature name="tag" negate="false" regexp="false"
+                              state="0">UL</extrafeature>
+                <ComponentStep class="LI" classcount="4" classindex="1"
+                               height="42"
+                               id="staging.intu.co.uk.liFood___drink"
+                               uid="_1mDq" width="192" x="0" y="42">
+                  <extrafeature name="qfs:class" negate="false" regexp="false"
+                                state="0">LI</extrafeature>
+                  <extrafeature name="qfs:label" negate="false" regexp="false"
+                                state="1">food &amp; drink</extrafeature>
+                  <extrafeature name="qfs:systemclass" negate="false"
+                                regexp="false" state="0">LI</extrafeature>
+                  <extrafeature name="tag" negate="false" regexp="false"
+                                state="0">LI</extrafeature>
+                  <ComponentStep class="Link" classcount="1" classindex="0"
+                                 feature="food &amp; drink" height="42"
+                                 id="linkFood___drink" uid="_1mDr" width="192"
+                                 x="0" y="0">
+                    <extrafeature name="class" negate="false" regexp="false"
+                                  state="0">js-ga-event</extrafeature>
+                    <extrafeature name="href" negate="false" regexp="false"
+                                  state="0">https://staging.intu.co.uk/lakeside/restaurants</extrafeature>
+                    <extrafeature name="qfs:class" negate="false"
+                                  regexp="false" state="0">A</extrafeature>
+                    <extrafeature name="qfs:genericclass" negate="false"
+                                  regexp="false" state="0">Link</extrafeature>
+                    <extrafeature name="qfs:label" negate="false"
+                                  regexp="false" state="1">food &amp; drink</extrafeature>
+                    <extrafeature name="qfs:systemclass" negate="false"
+                                  regexp="false" state="0">A</extrafeature>
+                    <extrafeature name="tag" negate="false" regexp="false"
+                                  state="0">A</extrafeature>
+                  </ComponentStep>
+                </ComponentStep>
+              </ComponentStep>
+            </ComponentStep>
+            <ComponentStep class="LI" classcount="5" classindex="1"
+                           height="27"
+                           id="staging.intu.co.uk.liShopping_centres_intu_Braehead_intu_Broadmarsh_intu_Chapelfield_intu_Derby_intu_Eldon_Square_intu_Lakeside_intu_Merry_Hill_intu_Metrocentre_intu_Milton_Keynes_intu_Potteries_intu_Trafford_Centre_intu_Uxbridge_intu_Victoria_Centre_intu_Watford_intu_Braehead_stores_food___drink_what's_on_offers_leisure_families_centre_info"
+                           uid="_1mDv" width="166" x="198" y="0">
+              <extrafeature name="class" negate="false" regexp="false"
+                            state="0">dropdown</extrafeature>
+              <extrafeature name="qfs:class" negate="false" regexp="false"
+                            state="0">LI</extrafeature>
+              <extrafeature name="qfs:label" negate="false" regexp="false"
+                            state="1">shopping centres
+intu Braehead
+intu Broadmarsh
+intu Chapelfield
+intu Derby
+intu Eldon Square
+intu Lakeside
+intu Merry Hill
+intu Metrocentre
+intu Milton Keynes
+intu Potteries
+intu Trafford Centre
+intu Uxbridge
+intu Victoria Centre
+intu Watford
+intu Braehead
+stores
+food &amp; drink
+what's on
+offers
+leisure
+families
+centre info</extrafeature>
+              <extrafeature name="qfs:systemclass" negate="false"
+                            regexp="false" state="0">LI</extrafeature>
+              <extrafeature name="tag" negate="false" regexp="false"
+                            state="0">LI</extrafeature>
+              <ComponentStep class="Link" classcount="29" classindex="0"
+                             feature="shopping centres" height="27"
+                             id="linkShopping_centres" uid="_1mDw" width="166"
+                             x="0" y="0">
+                <extrafeature name="class" negate="false" regexp="false"
+                              state="0">js-ga-event dropdown-chevron open</extrafeature>
+                <extrafeature name="href" negate="false" regexp="false"
+                              state="0">https://staging.intu.co.uk/centres</extrafeature>
+                <extrafeature name="qfs:class" negate="false" regexp="false"
+                              state="0">A</extrafeature>
+                <extrafeature name="qfs:genericclass" negate="false"
+                              regexp="false" state="0">Link</extrafeature>
+                <extrafeature name="qfs:label" negate="false" regexp="false"
+                              state="1">shopping centres</extrafeature>
+                <extrafeature name="qfs:systemclass" negate="false"
+                              regexp="false" state="0">A</extrafeature>
+                <extrafeature name="tag" negate="false" regexp="false"
+                              state="0">A</extrafeature>
+              </ComponentStep>
+            </ComponentStep>
+            <ComponentStep class="LI" classcount="5" classindex="1"
+                           height="27"
+                           id="staging.intu.co.uk.liShopping_centres_intu_Braehead_intu_Broadmarsh_intu_Chapelfield_intu_Derby_intu_Eldon_Square_intu_Lakeside_intu_Merry_Hill_intu_Metrocentre_intu_Milton_Keynes_intu_Potteries_intu_Trafford_Centre_intu_Uxbridge_intu_Victoria_Centre_intu_Watford_intu_Chapelfield_stores_food___drink_what's_on_offers_families_centre_info"
+                           uid="_1mEE" width="166" x="198" y="0">
+              <extrafeature name="class" negate="false" regexp="false"
+                            state="0">dropdown</extrafeature>
+              <extrafeature name="qfs:class" negate="false" regexp="false"
+                            state="0">LI</extrafeature>
+              <extrafeature name="qfs:label" negate="false" regexp="false"
+                            state="1">shopping centres
+intu Braehead
+intu Broadmarsh
+intu Chapelfield
+intu Derby
+intu Eldon Square
+intu Lakeside
+intu Merry Hill
+intu Metrocentre
+intu Milton Keynes
+intu Potteries
+intu Trafford Centre
+intu Uxbridge
+intu Victoria Centre
+intu Watford
+intu Chapelfield
+stores
+food &amp; drink
+what's on
+offers
+families
+centre info</extrafeature>
+              <extrafeature name="qfs:systemclass" negate="false"
+                            regexp="false" state="0">LI</extrafeature>
+              <extrafeature name="tag" negate="false" regexp="false"
+                            state="0">LI</extrafeature>
+              <ComponentStep class="DL" classcount="1" classindex="0"
+                             height="518" id="staging.intu.co.uk.dl2"
+                             uid="_1mEF" width="192" x="-100164" y="33">
+                <extrafeature name="class" negate="false" regexp="false"
+                              state="0">tabs vertical</extrafeature>
+                <extrafeature name="qfs:class" negate="false" regexp="false"
+                              state="0">DL</extrafeature>
+                <extrafeature name="qfs:systemclass" negate="false"
+                              regexp="false" state="0">DL</extrafeature>
+                <extrafeature name="tag" negate="false" regexp="false"
+                              state="0">DL</extrafeature>
+                <ComponentStep class="DD" classcount="14" classindex="2"
+                               height="38" id="staging.intu.co.uk.dd2"
+                               uid="_1mEG" width="192" x="0" y="74">
+                  <extrafeature name="class" negate="false" regexp="false"
+                                state="0">dropdown active</extrafeature>
+                  <extrafeature name="qfs:class" negate="false" regexp="false"
+                                state="0">DD</extrafeature>
+                  <extrafeature name="qfs:systemclass" negate="false"
+                                regexp="false" state="0">DD</extrafeature>
+                  <extrafeature name="tag" negate="false" regexp="false"
+                                state="0">DD</extrafeature>
+                  <ComponentStep class="Link" classcount="1" classindex="0"
+                                 feature="intu Chapelfield" height="38"
+                                 id="linkIntu_Chapelfield" uid="_1mEH"
+                                 width="192" x="0" y="0">
+                    <extrafeature name="class" negate="false" regexp="false"
+                                  state="0">dropdown-toggle js-ga-event</extrafeature>
+                    <extrafeature name="href" negate="false" regexp="false"
+                                  state="0">https://staging.intu.co.uk/chapelfield</extrafeature>
+                    <extrafeature name="qfs:class" negate="false"
+                                  regexp="false" state="0">A</extrafeature>
+                    <extrafeature name="qfs:genericclass" negate="false"
+                                  regexp="false" state="0">Link</extrafeature>
+                    <extrafeature name="qfs:label" negate="false"
+                                  regexp="false" state="1">intu Chapelfield</extrafeature>
+                    <extrafeature name="qfs:systemclass" negate="false"
+                                  regexp="false" state="0">A</extrafeature>
+                    <extrafeature name="tag" negate="false" regexp="false"
+                                  state="0">A</extrafeature>
+                  </ComponentStep>
+                </ComponentStep>
+              </ComponentStep>
+              <ComponentStep class="UL" classcount="28" classindex="4"
+                             height="126" id="staging.intu.co.uk.ul6"
+                             uid="_1mEe" width="192" x="224" y="229">
+                <extrafeature name="class" negate="false" regexp="false"
+                              state="0">megamenu__links</extrafeature>
+                <extrafeature name="qfs:class" negate="false" regexp="false"
+                              state="0">UL</extrafeature>
+                <extrafeature name="qfs:systemclass" negate="false"
+                              regexp="false" state="0">UL</extrafeature>
+                <extrafeature name="tag" negate="false" regexp="false"
+                              state="0">UL</extrafeature>
+                <ComponentStep class="LI" classcount="3" classindex="1"
+                               height="42"
+                               id="staging.intu.co.uk.liFood___drink2"
+                               uid="_1mEf" width="192" x="0" y="42">
+                  <extrafeature name="qfs:class" negate="false" regexp="false"
+                                state="0">LI</extrafeature>
+                  <extrafeature name="qfs:label" negate="false" regexp="false"
+                                state="1">food &amp; drink</extrafeature>
+                  <extrafeature name="qfs:systemclass" negate="false"
+                                regexp="false" state="0">LI</extrafeature>
+                  <extrafeature name="tag" negate="false" regexp="false"
+                                state="0">LI</extrafeature>
+                  <ComponentStep class="Link" classcount="1" classindex="0"
+                                 feature="food &amp; drink" height="42"
+                                 id="linkFood___drink2" uid="_1mEg"
+                                 width="192" x="0" y="0">
+                    <extrafeature name="class" negate="false" regexp="false"
+                                  state="0">js-ga-event</extrafeature>
+                    <extrafeature name="href" negate="false" regexp="false"
+                                  state="0">https://staging.intu.co.uk/chapelfield/restaurants</extrafeature>
+                    <extrafeature name="qfs:class" negate="false"
+                                  regexp="false" state="0">A</extrafeature>
+                    <extrafeature name="qfs:genericclass" negate="false"
+                                  regexp="false" state="0">Link</extrafeature>
+                    <extrafeature name="qfs:label" negate="false"
+                                  regexp="false" state="1">food &amp; drink</extrafeature>
+                    <extrafeature name="qfs:systemclass" negate="false"
+                                  regexp="false" state="0">A</extrafeature>
+                    <extrafeature name="tag" negate="false" regexp="false"
+                                  state="0">A</extrafeature>
+                  </ComponentStep>
+                </ComponentStep>
+                <ComponentStep class="LI" classcount="3" classindex="0"
+                               height="42" id="staging.intu.co.uk.liStores2"
+                               uid="_1mG2" width="192" x="0" y="0">
+                  <extrafeature name="qfs:class" negate="false" regexp="false"
+                                state="0">LI</extrafeature>
+                  <extrafeature name="qfs:label" negate="false" regexp="false"
+                                state="1">stores</extrafeature>
+                  <extrafeature name="qfs:systemclass" negate="false"
+                                regexp="false" state="0">LI</extrafeature>
+                  <extrafeature name="tag" negate="false" regexp="false"
+                                state="0">LI</extrafeature>
+                  <ComponentStep class="Link" classcount="1" classindex="0"
+                                 feature="stores" height="42" id="linkStores2"
+                                 uid="_1mG3" width="192" x="0" y="0">
+                    <extrafeature name="class" negate="false" regexp="false"
+                                  state="0">js-ga-event</extrafeature>
+                    <extrafeature name="href" negate="false" regexp="false"
+                                  state="0">https://staging.intu.co.uk/chapelfield/stores</extrafeature>
+                    <extrafeature name="qfs:class" negate="false"
+                                  regexp="false" state="0">A</extrafeature>
+                    <extrafeature name="qfs:genericclass" negate="false"
+                                  regexp="false" state="0">Link</extrafeature>
+                    <extrafeature name="qfs:label" negate="false"
+                                  regexp="false" state="1">stores</extrafeature>
+                    <extrafeature name="qfs:systemclass" negate="false"
+                                  regexp="false" state="0">A</extrafeature>
+                    <extrafeature name="tag" negate="false" regexp="false"
+                                  state="0">A</extrafeature>
+                  </ComponentStep>
+                </ComponentStep>
+              </ComponentStep>
+            </ComponentStep>
+            <ComponentStep class="LI" classcount="5" classindex="1"
+                           height="27"
+                           id="staging.intu.co.uk.liShopping_centres_intu_Braehead_intu_Broadmarsh_intu_Chapelfield_intu_Derby_intu_Eldon_Square_intu_Lakeside_intu_Merry_Hill_intu_Metrocentre_intu_Milton_Keynes_intu_Potteries_intu_Trafford_Centre_intu_Uxbridge_intu_Victoria_Centre_intu_Watford_intu_Victoria_Centre_stores_food___drink_what's_on_offers_families_centre_info"
+                           uid="_1mEL" width="166" x="198" y="0">
+              <extrafeature name="class" negate="false" regexp="false"
+                            state="0">dropdown</extrafeature>
+              <extrafeature name="qfs:class" negate="false" regexp="false"
+                            state="0">LI</extrafeature>
+              <extrafeature name="qfs:label" negate="false" regexp="false"
+                            state="1">shopping centres
+intu Braehead
+intu Broadmarsh
+intu Chapelfield
+intu Derby
+intu Eldon Square
+intu Lakeside
+intu Merry Hill
+intu Metrocentre
+intu Milton Keynes
+intu Potteries
+intu Trafford Centre
+intu Uxbridge
+intu Victoria Centre
+intu Watford
+intu Victoria Centre
+stores
+food &amp; drink
+what's on
+offers
+families
+centre info</extrafeature>
+              <extrafeature name="qfs:systemclass" negate="false"
+                            regexp="false" state="0">LI</extrafeature>
+              <extrafeature name="tag" negate="false" regexp="false"
+                            state="0">LI</extrafeature>
+              <ComponentStep class="Link" classcount="29" classindex="0"
+                             feature="shopping centres" height="27"
+                             id="linkShopping_centres2" uid="_1mEM"
+                             width="166" x="0" y="0">
+                <extrafeature name="class" negate="false" regexp="false"
+                              state="0">js-ga-event dropdown-chevron open</extrafeature>
+                <extrafeature name="href" negate="false" regexp="false"
+                              state="0">https://staging.intu.co.uk/centres</extrafeature>
+                <extrafeature name="qfs:class" negate="false" regexp="false"
+                              state="0">A</extrafeature>
+                <extrafeature name="qfs:genericclass" negate="false"
+                              regexp="false" state="0">Link</extrafeature>
+                <extrafeature name="qfs:label" negate="false" regexp="false"
+                              state="1">shopping centres</extrafeature>
+                <extrafeature name="qfs:systemclass" negate="false"
+                              regexp="false" state="0">A</extrafeature>
+                <extrafeature name="tag" negate="false" regexp="false"
+                              state="0">A</extrafeature>
+              </ComponentStep>
+            </ComponentStep>
+          </ComponentStep>
+          <ComponentStep class="DIV" classcount="31" classindex="4" height="9"
+                         id="staging.intu.co.uk.div4" uid="_1mE7" width="1170"
+                         x="34" y="110">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">global-nav--desktop__divider</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">DIV</extrafeature>
+          </ComponentStep>
+          <ComponentStep class="NAV" classcount="1" classindex="0" height="60"
+                         id="staging.intu.co.uk.nav" uid="_1mEN" width="1200"
+                         x="19" y="0">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">top-bar</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">NAV</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">NAV</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">NAV</extrafeature>
+          </ComponentStep>
+          <ComponentStep class="H3" classcount="1" classindex="0"
+                         feature="Popular restaurants" height="29"
+                         id="h3Popular_restaurants" uid="_1mEq" width="577"
+                         x="34" y="466">
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">H3</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">H3</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">H3</extrafeature>
+          </ComponentStep>
+          <ComponentStep class="DIV" classcount="177" classindex="52"
+                         height="440" id="staging.intu.co.uk.div5" uid="_1mEr"
+                         width="297" x="26" y="515">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">small-12 medium-4 large-3 columns popular-store-col</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">DIV</extrafeature>
+          </ComponentStep>
+          <ComponentStep class="DIV" classcount="177" classindex="67"
+                         height="440" id="staging.intu.co.uk.div6" uid="_1mEs"
+                         width="297" x="323" y="515">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">small-12 medium-4 large-3 columns popular-store-col</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">DIV</extrafeature>
+          </ComponentStep>
+          <ComponentStep class="DIV" classcount="177" classindex="82"
+                         height="440" id="staging.intu.co.uk.div7" uid="_1mEt"
+                         width="297" x="619" y="515">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">small-12 medium-4 large-3 columns popular-store-col</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">DIV</extrafeature>
+          </ComponentStep>
+          <ComponentStep class="A" classcount="35" classindex="10"
+                         feature="View All" height="68" id="aView_All"
+                         uid="_1mEu" width="83" x="1114" y="446">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">c2a all-stores</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">A</extrafeature>
+            <extrafeature name="qfs:label" negate="false" regexp="false"
+                          state="1">View All</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">A</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">A</extrafeature>
+          </ComponentStep>
+          <ComponentStep class="UL" classcount="13" classindex="4" height="44"
+                         id="staging.intu.co.uk.ul7" uid="_1mF6" width="254"
+                         x="34" y="402">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">stores-hub-tabs</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">UL</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">UL</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">UL</extrafeature>
+            <ComponentStep class="LI" classcount="2" classindex="0"
+                           height="44" id="staging.intu.co.uk.liPopular"
+                           uid="_1mF7" width="99" x="0" y="0">
+              <extrafeature name="class" negate="false" regexp="false"
+                            state="0">popular-tab active-tab</extrafeature>
+              <extrafeature name="qfs:class" negate="false" regexp="false"
+                            state="0">LI</extrafeature>
+              <extrafeature name="qfs:label" negate="false" regexp="false"
+                            state="1">Popular</extrafeature>
+              <extrafeature name="qfs:systemclass" negate="false"
+                            regexp="false" state="0">LI</extrafeature>
+              <extrafeature name="tag" negate="false" regexp="false"
+                            state="0">LI</extrafeature>
+            </ComponentStep>
+            <ComponentStep class="LI" classcount="2" classindex="1"
+                           height="42"
+                           id="staging.intu.co.uk.liAll_Restaurants"
+                           uid="_1mF8" width="155" x="99" y="0">
+              <extrafeature name="class" negate="false" regexp="false"
+                            state="0">all-restaurants-tab</extrafeature>
+              <extrafeature name="qfs:class" negate="false" regexp="false"
+                            state="0">LI</extrafeature>
+              <extrafeature name="qfs:label" negate="false" regexp="false"
+                            state="1">All Restaurants</extrafeature>
+              <extrafeature name="qfs:systemclass" negate="false"
+                            regexp="false" state="0">LI</extrafeature>
+              <extrafeature name="tag" negate="false" regexp="false"
+                            state="0">LI</extrafeature>
+            </ComponentStep>
+            <ComponentStep class="LI" classcount="2" classindex="1"
+                           height="42" id="staging.intu.co.uk.liAll_Stores"
+                           uid="_1mIS" width="113" x="99" y="0">
+              <extrafeature name="class" negate="false" regexp="false"
+                            state="0">all-stores-tab</extrafeature>
+              <extrafeature name="qfs:class" negate="false" regexp="false"
+                            state="0">LI</extrafeature>
+              <extrafeature name="qfs:label" negate="false" regexp="false"
+                            state="1">All Stores</extrafeature>
+              <extrafeature name="qfs:systemclass" negate="false"
+                            regexp="false" state="0">LI</extrafeature>
+              <extrafeature name="tag" negate="false" regexp="false"
+                            state="0">LI</extrafeature>
+            </ComponentStep>
+          </ComponentStep>
+          <ComponentStep class="H3" classcount="2" classindex="1"
+                         feature="Popular restaurants" height="29"
+                         id="h3Popular_restaurants2" uid="_1mGI" width="577"
+                         x="34" y="1416">
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">H3</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">H3</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">H3</extrafeature>
+          </ComponentStep>
+          <ComponentStep class="Link" classcount="115" classindex="90"
+                         feature="View All" height="68" id="linkView_All"
+                         uid="_1mGJ" width="83" x="1114" y="1396">
+            <extrafeature name="category" negate="false" regexp="false"
+                          state="0">all</extrafeature>
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">c2a all-stores</extrafeature>
+            <extrafeature name="href" negate="false" regexp="false" state="0">https://staging.intu.co.uk/lakeside/restaurants</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">A</extrafeature>
+            <extrafeature name="qfs:genericclass" negate="false"
+                          regexp="false" state="0">Link</extrafeature>
+            <extrafeature name="qfs:label" negate="false" regexp="false"
+                          state="1">View All</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">A</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">A</extrafeature>
+          </ComponentStep>
+          <ComponentStep class="DIV" classcount="425" classindex="188"
+                         height="440" id="staging.intu.co.uk.div8" uid="_1mGK"
+                         width="297" x="26" y="1465">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">small-12 medium-4 large-3 columns popular-store-col</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">DIV</extrafeature>
+          </ComponentStep>
+          <ComponentStep class="DIV" classcount="269" classindex="44"
+                         height="933" id="staging.intu.co.uk.div9" uid="_1mIa"
+                         width="1170" x="34" y="402">
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">DIV</extrafeature>
+          </ComponentStep>
+          <ComponentStep class="H3" classcount="1" classindex="0"
+                         feature="Popular stores" height="29"
+                         id="h3Popular_stores" uid="_1mIk" width="577" x="34"
+                         y="466">
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">H3</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">H3</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">H3</extrafeature>
+          </ComponentStep>
+          <ComponentStep class="DIV" classcount="269" classindex="51"
+                         height="410" id="staging.intu.co.uk.div10"
+                         uid="_1mIl" width="297" x="26" y="515">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">small-12 medium-4 large-3 columns popular-store-col</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">DIV</extrafeature>
+          </ComponentStep>
+          <ComponentStep class="A" classcount="80" classindex="9"
+                         feature="View All" height="68" id="aView_All2"
+                         uid="_1mIv" width="83" x="1114" y="446">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">c2a all-stores</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">A</extrafeature>
+            <extrafeature name="qfs:label" negate="false" regexp="false"
+                          state="1">View All</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">A</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">A</extrafeature>
+          </ComponentStep>
+          <ComponentStep class="DIV" classcount="177" classindex="97"
+                         height="440" id="staging.intu.co.uk.div11"
+                         uid="_1mJ5" width="297" x="916" y="515">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">small-12 medium-4 large-3 columns popular-store-col</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">DIV</extrafeature>
+          </ComponentStep>
+          <ComponentStep class="DIV" classcount="177" classindex="112"
+                         height="440" id="staging.intu.co.uk.div12"
+                         uid="_1mJ6" width="297" x="26" y="956">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">small-12 medium-4 large-3 columns popular-store-col</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">DIV</extrafeature>
+          </ComponentStep>
+          <ComponentStep class="DIV" classcount="177" classindex="127"
+                         height="440" id="staging.intu.co.uk.div13"
+                         uid="_1mJ7" width="297" x="323" y="956">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">small-12 medium-4 large-3 columns popular-store-col</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">DIV</extrafeature>
+          </ComponentStep>
+          <ComponentStep class="DIV" classcount="177" classindex="142"
+                         height="440" id="staging.intu.co.uk.div14"
+                         uid="_1mJ8" width="297" x="619" y="956">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">small-12 medium-4 large-3 columns popular-store-col</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">DIV</extrafeature>
+          </ComponentStep>
+          <ComponentStep class="DIV" classcount="177" classindex="157"
+                         height="440" id="staging.intu.co.uk.div15"
+                         uid="_1mJ9" width="297" x="916" y="956">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">small-12 medium-4 large-3 columns popular-store-col</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">DIV</extrafeature>
+          </ComponentStep>
+          <ComponentStep class="SPAN" classcount="103" classindex="0"
+                         height="44" id="staging.intu.co.uk.span2" uid="_1mJa"
+                         width="1200" x="1219" y="367">
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">SPAN</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">SPAN</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">SPAN</extrafeature>
+            <ComponentStep class="DIV" classcount="1" classindex="0"
+                           height="44" id="staging.intu.co.uk.div16"
+                           uid="_1mJb" width="1200" x="-1200" y="15">
+              <extrafeature name="class" negate="false" regexp="false"
+                            state="0">az-listing small-12 columns</extrafeature>
+              <extrafeature name="qfs:class" negate="false" regexp="false"
+                            state="0">DIV</extrafeature>
+              <extrafeature name="qfs:systemclass" negate="false"
+                            regexp="false" state="0">DIV</extrafeature>
+              <extrafeature name="tag" negate="false" regexp="false"
+                            state="0">DIV</extrafeature>
+            </ComponentStep>
+          </ComponentStep>
+          <ComponentStep class="UL" classcount="13" classindex="0" height="27"
+                         id="staging.intu.co.uk.ul8" uid="_1mL8" width="900"
+                         x="-13" y="83">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">global-nav__list</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">UL</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">UL</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">UL</extrafeature>
+            <ComponentStep class="LI" classcount="5" classindex="1"
+                           height="27"
+                           id="staging.intu.co.uk.liShopping_centres_intu_Braehead_intu_Broadmarsh_intu_Chapelfield_intu_Derby_intu_Eldon_Square_intu_Lakeside_intu_Merry_Hill_intu_Metrocentre_intu_Milton_Keynes_intu_Potteries_intu_Trafford_Centre_intu_Uxbridge_intu_Victoria_Centre_intu_Watford_intu_Chapelfield_stores_food___drink_what's_on_offers_families_centre_info2"
+                           uid="_1mL9" width="166" x="198" y="0">
+              <extrafeature name="class" negate="false" regexp="false"
+                            state="0">dropdown</extrafeature>
+              <extrafeature name="qfs:class" negate="false" regexp="false"
+                            state="0">LI</extrafeature>
+              <extrafeature name="qfs:label" negate="false" regexp="false"
+                            state="1">shopping centres
+intu Braehead
+intu Broadmarsh
+intu Chapelfield
+intu Derby
+intu Eldon Square
+intu Lakeside
+intu Merry Hill
+intu Metrocentre
+intu Milton Keynes
+intu Potteries
+intu Trafford Centre
+intu Uxbridge
+intu Victoria Centre
+intu Watford
+intu Chapelfield
+stores
+food &amp; drink
+what's on
+offers
+families
+centre info</extrafeature>
+              <extrafeature name="qfs:systemclass" negate="false"
+                            regexp="false" state="0">LI</extrafeature>
+              <extrafeature name="tag" negate="false" regexp="false"
+                            state="0">LI</extrafeature>
+              <ComponentStep class="UL" classcount="28" classindex="4"
+                             height="126" id="staging.intu.co.uk.ul9"
+                             uid="_1mLA" width="192" x="224" y="229">
+                <extrafeature name="class" negate="false" regexp="false"
+                              state="0">megamenu__links</extrafeature>
+                <extrafeature name="qfs:class" negate="false" regexp="false"
+                              state="0">UL</extrafeature>
+                <extrafeature name="qfs:systemclass" negate="false"
+                              regexp="false" state="0">UL</extrafeature>
+                <extrafeature name="tag" negate="false" regexp="false"
+                              state="0">UL</extrafeature>
+                <ComponentStep class="LI" classcount="3" classindex="1"
+                               height="42"
+                               id="staging.intu.co.uk.liFood___drink3"
+                               uid="_1mLB" width="192" x="0" y="42">
+                  <extrafeature name="qfs:class" negate="false" regexp="false"
+                                state="0">LI</extrafeature>
+                  <extrafeature name="qfs:label" negate="false" regexp="false"
+                                state="1">food &amp; drink</extrafeature>
+                  <extrafeature name="qfs:systemclass" negate="false"
+                                regexp="false" state="0">LI</extrafeature>
+                  <extrafeature name="tag" negate="false" regexp="false"
+                                state="0">LI</extrafeature>
+                  <ComponentStep class="Link" classcount="1" classindex="0"
+                                 feature="food &amp; drink" height="42"
+                                 id="linkFood___drink3" uid="_1mLC"
+                                 width="192" x="0" y="0">
+                    <extrafeature name="class" negate="false" regexp="false"
+                                  state="0">js-ga-event</extrafeature>
+                    <extrafeature name="href" negate="false" regexp="false"
+                                  state="0">https://staging.intu.co.uk/chapelfield/restaurants</extrafeature>
+                    <extrafeature name="qfs:class" negate="false"
+                                  regexp="false" state="0">A</extrafeature>
+                    <extrafeature name="qfs:genericclass" negate="false"
+                                  regexp="false" state="0">Link</extrafeature>
+                    <extrafeature name="qfs:label" negate="false"
+                                  regexp="false" state="1">food &amp; drink</extrafeature>
+                    <extrafeature name="qfs:systemclass" negate="false"
+                                  regexp="false" state="0">A</extrafeature>
+                    <extrafeature name="tag" negate="false" regexp="false"
+                                  state="0">A</extrafeature>
+                  </ComponentStep>
+                </ComponentStep>
+              </ComponentStep>
+            </ComponentStep>
+          </ComponentStep>
+          <ComponentStep class="UL" classcount="4" classindex="0" height="27"
+                         id="staging.intu.co.uk.ul10" uid="_1mLG" width="900"
+                         x="-13" y="83">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">global-nav__list</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">UL</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">UL</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">UL</extrafeature>
+            <ComponentStep class="LI" classcount="5" classindex="1"
+                           height="27"
+                           id="staging.intu.co.uk.liShopping_centres_intu_Braehead_intu_Broadmarsh_intu_Chapelfield_intu_Derby_intu_Eldon_Square_intu_Lakeside_intu_Merry_Hill_intu_Metrocentre_intu_Milton_Keynes_intu_Potteries_intu_Trafford_Centre_intu_Uxbridge_intu_Victoria_Centre_intu_Watford_intu_Braehead_stores_food___drink_what's_on_offers_leisure_families_centre_info2"
+                           uid="_1mLH" width="166" x="198" y="0">
+              <extrafeature name="class" negate="false" regexp="false"
+                            state="0">dropdown</extrafeature>
+              <extrafeature name="qfs:class" negate="false" regexp="false"
+                            state="0">LI</extrafeature>
+              <extrafeature name="qfs:label" negate="false" regexp="false"
+                            state="1">shopping centres
+intu Braehead
+intu Broadmarsh
+intu Chapelfield
+intu Derby
+intu Eldon Square
+intu Lakeside
+intu Merry Hill
+intu Metrocentre
+intu Milton Keynes
+intu Potteries
+intu Trafford Centre
+intu Uxbridge
+intu Victoria Centre
+intu Watford
+intu Braehead
+stores
+food &amp; drink
+what's on
+offers
+leisure
+families
+centre info</extrafeature>
+              <extrafeature name="qfs:systemclass" negate="false"
+                            regexp="false" state="0">LI</extrafeature>
+              <extrafeature name="tag" negate="false" regexp="false"
+                            state="0">LI</extrafeature>
+              <ComponentStep class="UL" classcount="28" classindex="4"
+                             height="0" id="staging.intu.co.uk.ul11"
+                             uid="_1mLI" width="0" x="-9972" y="33">
+                <extrafeature name="class" negate="false" regexp="false"
+                              state="0">megamenu__links</extrafeature>
+                <extrafeature name="qfs:class" negate="false" regexp="false"
+                              state="0">UL</extrafeature>
+                <extrafeature name="qfs:systemclass" negate="false"
+                              regexp="false" state="0">UL</extrafeature>
+                <extrafeature name="tag" negate="false" regexp="false"
+                              state="0">UL</extrafeature>
+                <ComponentStep class="LI" classcount="3" classindex="0"
+                               height="0" id="staging.intu.co.uk.li"
+                               uid="_1mLJ" width="0" x="0" y="0">
+                  <extrafeature name="qfs:class" negate="false" regexp="false"
+                                state="0">LI</extrafeature>
+                  <extrafeature name="qfs:systemclass" negate="false"
+                                regexp="false" state="0">LI</extrafeature>
+                  <extrafeature name="tag" negate="false" regexp="false"
+                                state="0">LI</extrafeature>
+                  <ComponentStep class="Link" classcount="1" classindex="0"
+                                 feature="stores" height="0" id="linkStores3"
+                                 uid="_1mLK" width="0" x="0" y="0">
+                    <extrafeature name="class" negate="false" regexp="false"
+                                  state="0">js-ga-event</extrafeature>
+                    <extrafeature name="href" negate="false" regexp="false"
+                                  state="0">https://staging.intu.co.uk/chapelfield/stores</extrafeature>
+                    <extrafeature name="qfs:class" negate="false"
+                                  regexp="false" state="0">A</extrafeature>
+                    <extrafeature name="qfs:genericclass" negate="false"
+                                  regexp="false" state="0">Link</extrafeature>
+                    <extrafeature name="qfs:systemclass" negate="false"
+                                  regexp="false" state="0">A</extrafeature>
+                    <extrafeature name="tag" negate="false" regexp="false"
+                                  state="0">A</extrafeature>
+                  </ComponentStep>
+                </ComponentStep>
+              </ComponentStep>
+            </ComponentStep>
+          </ComponentStep>
+          <ComponentStep class="DIV" classcount="425" classindex="203"
+                         height="440" id="staging.intu.co.uk.div17"
+                         uid="_1mLj" width="297" x="323" y="1465">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">small-12 medium-4 large-3 columns popular-store-col</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">DIV</extrafeature>
+          </ComponentStep>
+          <ComponentStep class="DIV" classcount="425" classindex="218"
+                         height="440" id="staging.intu.co.uk.div18"
+                         uid="_1mLk" width="297" x="619" y="1465">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">small-12 medium-4 large-3 columns popular-store-col</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">DIV</extrafeature>
+          </ComponentStep>
+          <ComponentStep class="DIV" classcount="425" classindex="233"
+                         height="440" id="staging.intu.co.uk.div19"
+                         uid="_1mLl" width="297" x="916" y="1465">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">small-12 medium-4 large-3 columns popular-store-col</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">DIV</extrafeature>
+          </ComponentStep>
+          <ComponentStep class="DIV" classcount="425" classindex="248"
+                         height="440" id="staging.intu.co.uk.div20"
+                         uid="_1mLm" width="297" x="26" y="1905">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">small-12 medium-4 large-3 columns popular-store-col</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">DIV</extrafeature>
+          </ComponentStep>
+          <ComponentStep class="DIV" classcount="425" classindex="263"
+                         height="440" id="staging.intu.co.uk.div21"
+                         uid="_1mLn" width="297" x="323" y="1905">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">small-12 medium-4 large-3 columns popular-store-col</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">DIV</extrafeature>
+          </ComponentStep>
+          <ComponentStep class="DIV" classcount="425" classindex="278"
+                         height="440" id="staging.intu.co.uk.div22"
+                         uid="_1mLo" width="297" x="619" y="1905">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">small-12 medium-4 large-3 columns popular-store-col</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">DIV</extrafeature>
+          </ComponentStep>
+          <ComponentStep class="DIV" classcount="425" classindex="293"
+                         height="440" id="staging.intu.co.uk.div23"
+                         uid="_1mLp" width="297" x="916" y="1905">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">small-12 medium-4 large-3 columns popular-store-col</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">DIV</extrafeature>
+          </ComponentStep>
+          <ComponentStep class="DIV" classcount="1886" classindex="51"
+                         height="297" id="staging.intu.co.uk.div24"
+                         uid="_1mN3" width="300" x="19" y="600">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">small-12 medium-4 large-3 columns store-col</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">DIV</extrafeature>
+          </ComponentStep>
+          <ComponentStep class="UL" classcount="5" classindex="3" height="31"
+                         id="staging.intu.co.uk.ul12" uid="_1mPK" width="1260"
+                         x="20" y="304">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">breadcrumbs</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">UL</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">UL</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">UL</extrafeature>
+            <ComponentStep class="LI" classcount="4" classindex="3"
+                           height="31" id="staging.intu.co.uk.liFood___drink4"
+                           uid="_1mPL" width="116" x="335" y="0">
+              <extrafeature name="class" negate="false" regexp="false"
+                            state="0">current</extrafeature>
+              <extrafeature name="qfs:class" negate="false" regexp="false"
+                            state="0">LI</extrafeature>
+              <extrafeature name="qfs:label" negate="false" regexp="false"
+                            state="1">food &amp; drink</extrafeature>
+              <extrafeature name="qfs:systemclass" negate="false"
+                            regexp="false" state="0">LI</extrafeature>
+              <extrafeature name="tag" negate="false" regexp="false"
+                            state="0">LI</extrafeature>
+              <ComponentStep class="A" classcount="1" classindex="0"
+                             feature="food &amp; drink" height="20"
+                             id="aFood___drink" uid="_1mPM" width="90" x="25"
+                             y="6">
+                <extrafeature name="qfs:class" negate="false" regexp="false"
+                              state="0">A</extrafeature>
+                <extrafeature name="qfs:label" negate="false" regexp="false"
+                              state="1">food &amp; drink</extrafeature>
+                <extrafeature name="qfs:systemclass" negate="false"
+                              regexp="false" state="0">A</extrafeature>
+                <extrafeature name="tag" negate="false" regexp="false"
+                              state="0">A</extrafeature>
+              </ComponentStep>
+            </ComponentStep>
+            <ComponentStep class="LI" classcount="4" classindex="2"
+                           height="31"
+                           id="staging.intu.co.uk.liIntu_Chapelfield2"
+                           uid="_1mPN" width="140" x="195" y="0">
+              <extrafeature name="qfs:class" negate="false" regexp="false"
+                            state="0">LI</extrafeature>
+              <extrafeature name="qfs:label" negate="false" regexp="false"
+                            state="1">intu Chapelfield</extrafeature>
+              <extrafeature name="qfs:systemclass" negate="false"
+                            regexp="false" state="0">LI</extrafeature>
+              <extrafeature name="tag" negate="false" regexp="false"
+                            state="0">LI</extrafeature>
+              <ComponentStep class="Link" classcount="1" classindex="0"
+                             feature="intu Chapelfield" height="20"
+                             id="linkIntu_Chapelfield2" uid="_1mPO"
+                             width="115" x="25" y="6">
+                <extrafeature name="href" negate="false" regexp="false"
+                              state="0">https://staging.intu.co.uk/chapelfield</extrafeature>
+                <extrafeature name="qfs:class" negate="false" regexp="false"
+                              state="0">A</extrafeature>
+                <extrafeature name="qfs:genericclass" negate="false"
+                              regexp="false" state="0">Link</extrafeature>
+                <extrafeature name="qfs:label" negate="false" regexp="false"
+                              state="1">intu Chapelfield</extrafeature>
+                <extrafeature name="qfs:systemclass" negate="false"
+                              regexp="false" state="0">A</extrafeature>
+                <extrafeature name="tag" negate="false" regexp="false"
+                              state="0">A</extrafeature>
+              </ComponentStep>
+            </ComponentStep>
+            <ComponentStep class="LI" classcount="4" classindex="0"
+                           height="31" id="staging.intu.co.uk.liHome"
+                           uid="_1mPm" width="44" x="0" y="0">
+              <extrafeature name="qfs:class" negate="false" regexp="false"
+                            state="0">LI</extrafeature>
+              <extrafeature name="qfs:label" negate="false" regexp="false"
+                            state="1">Home</extrafeature>
+              <extrafeature name="qfs:systemclass" negate="false"
+                            regexp="false" state="0">LI</extrafeature>
+              <extrafeature name="tag" negate="false" regexp="false"
+                            state="0">LI</extrafeature>
+              <ComponentStep class="Link" classcount="1" classindex="0"
+                             feature="Home" height="20" id="linkHome"
+                             uid="_1mPn" width="44" x="0" y="6">
+                <extrafeature name="href" negate="false" regexp="false"
+                              state="0">https://staging.intu.co.uk/</extrafeature>
+                <extrafeature name="qfs:class" negate="false" regexp="false"
+                              state="0">A</extrafeature>
+                <extrafeature name="qfs:genericclass" negate="false"
+                              regexp="false" state="0">Link</extrafeature>
+                <extrafeature name="qfs:label" negate="false" regexp="false"
+                              state="1">Home</extrafeature>
+                <extrafeature name="qfs:systemclass" negate="false"
+                              regexp="false" state="0">A</extrafeature>
+                <extrafeature name="tag" negate="false" regexp="false"
+                              state="0">A</extrafeature>
+              </ComponentStep>
+            </ComponentStep>
+            <ComponentStep class="LI" classcount="4" classindex="1"
+                           height="31"
+                           id="staging.intu.co.uk.liShopping_centres"
+                           uid="_1mPo" width="151" x="44" y="0">
+              <extrafeature name="qfs:class" negate="false" regexp="false"
+                            state="0">LI</extrafeature>
+              <extrafeature name="qfs:label" negate="false" regexp="false"
+                            state="1">shopping centres</extrafeature>
+              <extrafeature name="qfs:systemclass" negate="false"
+                            regexp="false" state="0">LI</extrafeature>
+              <extrafeature name="tag" negate="false" regexp="false"
+                            state="0">LI</extrafeature>
+              <ComponentStep class="Link" classcount="1" classindex="0"
+                             feature="shopping centres" height="20"
+                             id="linkShopping_centres3" uid="_1mPp"
+                             width="126" x="25" y="6">
+                <extrafeature name="href" negate="false" regexp="false"
+                              state="0">https://staging.intu.co.uk/centres</extrafeature>
+                <extrafeature name="qfs:class" negate="false" regexp="false"
+                              state="0">A</extrafeature>
+                <extrafeature name="qfs:genericclass" negate="false"
+                              regexp="false" state="0">Link</extrafeature>
+                <extrafeature name="qfs:label" negate="false" regexp="false"
+                              state="1">shopping centres</extrafeature>
+                <extrafeature name="qfs:systemclass" negate="false"
+                              regexp="false" state="0">A</extrafeature>
+                <extrafeature name="tag" negate="false" regexp="false"
+                              state="0">A</extrafeature>
+              </ComponentStep>
+            </ComponentStep>
+          </ComponentStep>
+          <ComponentStep class="DIV" classcount="160" classindex="44"
+                         height="946" id="staging.intu.co.uk.div25"
+                         uid="_1mPg" width="1251" x="19" y="466">
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">DIV</extrafeature>
+          </ComponentStep>
+          <ComponentStep class="H1" classcount="3" classindex="2"
+                         feature="Food &amp; Drink" height="62"
+                         id="h1Food___Drink" uid="_1mPk" width="1260" x="20"
+                         y="234">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">color--primary</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">H1</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">H1</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">H1</extrafeature>
+          </ComponentStep>
+          <ComponentStep class="DIV" classcount="160" classindex="23"
+                         height="125" id="staging.intu.co.uk.div26"
+                         uid="_1mPl" width="1280" x="0" y="230">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">page-header</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">DIV</extrafeature>
+          </ComponentStep>
+          <ComponentStep class="TextField" classcount="1" classindex="0"
+                         feature="query" height="46" id="textfieldQuery"
+                         uid="_1mPt" width="283" x="19" y="375">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">radius</extrafeature>
+            <extrafeature name="name" negate="false" regexp="false" state="1">query</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">INPUT:TEXT</extrafeature>
+            <extrafeature name="qfs:genericclass" negate="false"
+                          regexp="false" state="0">TextField</extrafeature>
+            <extrafeature name="qfs:label" negate="false" regexp="false"
+                          state="1">Search store, restaurant</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">INPUT:TEXT</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">INPUT:TEXT</extrafeature>
+          </ComponentStep>
+          <ComponentStep class="ComboBox" classcount="1" classindex="0"
+                         feature="category" height="46" id="comboboxCategory"
+                         uid="_1mPu" width="283" x="339" y="375">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">rounded category-select</extrafeature>
+            <extrafeature name="name" negate="false" regexp="false" state="1">category</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">SELECT</extrafeature>
+            <extrafeature name="qfs:genericclass" negate="false"
+                          regexp="false" state="0">ComboBox</extrafeature>
+            <extrafeature name="qfs:label" negate="false" regexp="false"
+                          state="1">intu's Gift Card accepted</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">SELECT</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">SELECT</extrafeature>
+          </ComponentStep>
+          <ComponentStep class="CheckBox" classcount="1" classindex="0"
+                         feature="gift-cards" height="13"
+                         id="gift-card-filter" name="gift-card-filter"
+                         uid="_1mPv" width="13" x="659" y="388">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">stores__gift-card-filter</extrafeature>
+            <extrafeature name="id" negate="false" regexp="false" state="1">gift-card-filter</extrafeature>
+            <extrafeature name="name" negate="false" regexp="false" state="1">gift-cards</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">INPUT:CHECKBOX</extrafeature>
+            <extrafeature name="qfs:genericclass" negate="false"
+                          regexp="false" state="0">CheckBox</extrafeature>
+            <extrafeature name="qfs:label" negate="false" regexp="false"
+                          state="1">intu's Gift Card accepted</extrafeature>
+            <extrafeature name="qfs:originalid" negate="false" regexp="false"
+                          state="0">gift-card-filter</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">INPUT:CHECKBOX</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">INPUT:CHECKBOX</extrafeature>
+            <extrafeature name="value" negate="false" regexp="false"
+                          state="1">on</extrafeature>
+          </ComponentStep>
+          <ComponentStep class="Link" classcount="26" classindex="8"
+                         feature="Centre map" height="47" id="linkCentre_map"
+                         uid="_1mPw" width="282" x="979" y="375">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">button radius map-button js-ga-event</extrafeature>
+            <extrafeature name="href" negate="false" regexp="false" state="0">map</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">A</extrafeature>
+            <extrafeature name="qfs:genericclass" negate="false"
+                          regexp="false" state="0">Link</extrafeature>
+            <extrafeature name="qfs:label" negate="false" regexp="false"
+                          state="1">Centre map</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">A</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">A</extrafeature>
+          </ComponentStep>
+          <ComponentStep class="Link" classcount="26" classindex="9"
+                         feature="http://staging.intu.co.uk/chapelfield/stores/byron"
+                         height="38"
+                         id="linkHttp://staging.intu.co.uk/chapelfield/stores/byron"
+                         uid="_1mPx" width="86" x="221" y="706">
+            <extrafeature name="href" negate="false" regexp="false" state="0">http://staging.intu.co.uk/chapelfield/stores/byron</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">A</extrafeature>
+            <extrafeature name="qfs:genericclass" negate="false"
+                          regexp="false" state="0">Link</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">A</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">A</extrafeature>
+          </ComponentStep>
+          <ComponentStep class="Link" classcount="26" classindex="10"
+                         feature="Store info" height="23" id="linkStore_info"
+                         uid="_1mPy" width="98" x="29" y="775">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">c2a c2a--small</extrafeature>
+            <extrafeature name="href" negate="false" regexp="false" state="0">http://staging.intu.co.uk/chapelfield/stores/byron</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">A</extrafeature>
+            <extrafeature name="qfs:genericclass" negate="false"
+                          regexp="false" state="0">Link</extrafeature>
+            <extrafeature name="qfs:label" negate="false" regexp="false"
+                          state="1">Store info</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">A</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">A</extrafeature>
+          </ComponentStep>
+          <ComponentStep class="DIV" classcount="268" classindex="44"
+                         height="1842" id="staging.intu.co.uk.div27"
+                         uid="_1mQS" width="1251" x="19" y="466">
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">DIV</extrafeature>
+          </ComponentStep>
+          <ComponentStep class="DIV" classcount="268" classindex="43"
+                         height="1842" id="staging.intu.co.uk.div28"
+                         uid="_1mQT" width="1280" x="0" y="466">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">small-12 columns</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">DIV</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">DIV</extrafeature>
+          </ComponentStep>
+          <ComponentStep class="A" classcount="48" classindex="9"
+                         feature="View All" height="68" id="aView_All3"
+                         uid="_1mQd" width="83" x="1168" y="517">
+            <extrafeature name="class" negate="false" regexp="false"
+                          state="0">c2a all-stores</extrafeature>
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">A</extrafeature>
+            <extrafeature name="qfs:label" negate="false" regexp="false"
+                          state="1">View All</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">A</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">A</extrafeature>
+          </ComponentStep>
+          <ComponentStep class="SPAN" classcount="61" classindex="0"
+                         height="0" id="staging.intu.co.uk.span5" uid="_1mR1"
+                         width="0" x="14" y="379">
+            <extrafeature name="qfs:class" negate="false" regexp="false"
+                          state="0">SPAN</extrafeature>
+            <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                          state="0">SPAN</extrafeature>
+            <extrafeature name="tag" negate="false" regexp="false" state="0">SPAN</extrafeature>
+            <ComponentStep class="DIV" classcount="1" classindex="0"
+                           height="44" id="staging.intu.co.uk.div29"
+                           uid="_1mR2" width="1200" x="0" y="0">
+              <extrafeature name="class" negate="false" regexp="false"
+                            state="0">az-listing small-12 columns</extrafeature>
+              <extrafeature name="qfs:class" negate="false" regexp="false"
+                            state="0">DIV</extrafeature>
+              <extrafeature name="qfs:systemclass" negate="false"
+                            regexp="false" state="0">DIV</extrafeature>
+              <extrafeature name="tag" negate="false" regexp="false"
+                            state="0">DIV</extrafeature>
+            </ComponentStep>
+          </ComponentStep>
+        </ComponentStep>
+      </ComponentStep>
+    </WebPageStep>
+  </WindowList>
+</RootStep>

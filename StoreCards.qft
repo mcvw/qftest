@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE RootStep>
+<RootStep id="_0" name="root" version="4.1.2">
+  <include>qfs.qft</include>
+  <reference>qfs.qft</reference>
+  <TestSet id="_1" name="Store cards">
+    <SetupSequence id="_A" name="Open web page in a browser">
+      <BasicSequence id="_B" name="Set global variables">
+        <SetGlobalStep id="_C" varname="client">
+          <default>intuWeb</default>
+        </SetGlobalStep>
+        <SetGlobalStep id="_D" varname="browser">
+          <default>chrome</default>
+        </SetGlobalStep>
+        <SetGlobalStep id="_E" varname="browserdir">
+          <default>C:\Program Files (x86)\Google\Chrome\Application</default>
+        </SetGlobalStep>
+      </BasicSequence>
+      <BasicSequence id="_F" name="Start browser without window">
+        <BrowserClientStarter browser="$(browser)" client="$(client)"
+                              executable="${qftest:java}" id="_G"
+                              mozhome="$(browserdir)" openwindow="false"/>
+        <ClientWaiter client="$(client)" id="_H"/>
+      </BasicSequence>
+      <BasicSequence id="_I" name="Perform browser settings">
+        <ProcedureCall id="_J"
+                       procedure="qfs.qft#qfs.web.browser.settings.doStartupSettings">
+          <variable name="client">$(client)</variable>
+          <variable name="browser">$(browser)</variable>
+          <variable name="mozhome">$(browserdir)</variable>
+          <variable name="emptyCache">true</variable>
+          <variable name="enableCookies">true</variable>
+          <variable name="deleteCookies">true</variable>
+          <variable name="locale">en</variable>
+          <variable name="enableProxy">false</variable>
+          <variable name="proxyAddress"/>
+          <variable name="proxyPort"/>
+          <variable name="proxyAutoconfigurl"/>
+          <variable name="enableProxyBypass">false</variable>
+          <variable name="proxyBypass"/>
+          <variable name="mozprofile"/>
+          <variable name="compatibilitymode">no</variable>
+        </ProcedureCall>
+      </BasicSequence>
+      <BasicSequence id="_K" name="Open browser window with URL">
+        <BrowserClientStarter browser="$(browser)" client="$(client)"
+                              executable="${qftest:java}" id="_L"
+                              openwindow="true" url="http://uat.intu.co.uk"/>
+        <DocumentWaiter client="$(client)" component="genericDocument" id="_M"
+                        timeout="60000"/>
+      </BasicSequence>
+      <BasicSequence id="_N" name="Install CustomWebResolver">
+        <ProcedureCall id="_O"
+                       procedure="qfs.qft#qfs.web.ajax.installCustomWebResolver">
+          <variable name="client">$(client)</variable>
+          <variable name="resolver">autodetect</variable>
+          <variable name="version"/>
+          <variable name="genericClasses"/>
+          <variable name="attributesToGenericClasses"/>
+          <variable name="tagsToGenericClasses"/>
+          <variable name="ignoreTags"/>
+          <variable name="ignoreByAttributes"/>
+          <variable name="autoIdPatterns"/>
+          <variable name="customIdAttributes"/>
+          <variable name="interestingByAttributes"/>
+          <variable name="attributesToQftFeature"/>
+          <variable name="documentJS"/>
+          <variable name="auto_extjs_version">3</variable>
+          <variable name="auto_gwt_version">2</variable>
+          <variable name="auto_icefaces_version">1</variable>
+          <variable name="auto_jqueryui_version">1</variable>
+          <variable name="auto_jeasyui_version">1</variable>
+          <variable name="auto_kendoui_version">1</variable>
+          <variable name="auto_primefaces_version">2</variable>
+          <variable name="auto_rap_version">3</variable>
+          <variable name="auto_richfaces_version">3</variable>
+          <variable name="auto_vaadin_version">2</variable>
+          <variable name="auto_zk_version">1</variable>
+        </ProcedureCall>
+      </BasicSequence>
+    </SetupSequence>
+    <TestSet id="_6" name="Product tab">
+      <TestCase externalizename="CMS-196:Card displays product tab" id="_3DV"
+                name="CMS-196:Card displays product tab"
+                reportname="CMS-196:Card displays product tab"/>
+      <TestCase externalizename="CMS-197:Product is clickable" id="_3DW"
+                name="CMS-197:Product is clickable"
+                reportname="CMS-197:Product is clickable"/>
+      <TestCase externalizename="CMS-198:All products link is clickable"
+                id="_3DX" name="CMS-198:All products link is clickable"
+                reportname="CMS-198:All products link is clickable"/>
+      <TestCase externalizename="CMS-204:Multiple products can be scrolled"
+                id="_3DY" name="CMS-204:Multiple products can be scrolled"
+                reportname="CMS-204:Multiple products can be scrolled"/>
+      <TestCase externalizename="CMS-199:Long product names are truncated"
+                id="_3DZ" name="CMS-199:Long product names are truncated"
+                reportname="CMS-199:Long product names are truncated"/>
+      <TestCase externalizename="200:Long product descriptions are truncated"
+                id="_3Da" name="200:Long product descriptions are truncated"
+                reportname="200:Long product descriptions are truncated"/>
+    </TestSet>
+    <TestSet id="_7" name="Store info tab"/>
+    <TestSet id="_8" name="Image">
+      <TestCase externalizename="CMS-218:Image can be uploaded to store page"
+                id="_2" name="CMS-218:Image can be uploaded to store page"
+                reportname="CMS-218:Image can be uploaded to store page">
+        <comment>Test that an image (with dimensions: 562x194px) can be uploaded to display on the expanded store card</comment>
+      </TestCase>
+      <TestCase externalizename="CMS-219:Image can be added to store page from media gallery"
+                id="_3DS"
+                name="CMS-219:Image can be added to store page from media gallery"
+                reportname="CMS-219:Image can be added to store page from media gallery">
+        <comment>Test that an image (with dimensions: 562x194px) can be added to the store page from the media gallery to display on the expanded store card</comment>
+      </TestCase>
+      <TestCase externalizename="CMS-221:Image can be updated on store page via upload"
+                id="_3DT"
+                name="CMS-221:Image can be updated on store page via upload"
+                reportname="CMS-221:Image can be updated on store page via upload">
+        <comment>Test that an image (with dimensions: 562x194px) can be updated via upload to display on the expanded store card</comment>
+      </TestCase>
+      <TestCase externalizename="CMS-220:Image can be updated on store page from media gallery"
+                id="_3DU"
+                name="CMS-220:Image can be updated on store page from media gallery"
+                reportname="CMS-220:Image can be updated on store page from media gallery">
+        <comment>Test that an image (with dimensions: 562x194px) on a store page can be updated from the media gallery to display on the expanded store card</comment>
+      </TestCase>
+    </TestSet>
+    <CleanupSequence id="_37">
+      <ProcedureCall id="_3DR" procedure="closeBrowser"/>
+    </CleanupSequence>
+  </TestSet>
+  <PackageRoot id="_3">
+    <Procedure id="_38" name="closeBrowser">
+      <TryStep id="_39" name="browserTerminate">
+        <ClientWaiter client="$(client)" id="_3DI" timeout="500"/>
+        <WindowEventStep client="$(client)" component="uat.intu.co.uk"
+                         event="WINDOW_CLOSING" id="_3DK"/>
+        <TryStep id="_3DL" name="wait for termination">
+          <ProcessWaiter client="$(client)" id="_3DM"/>
+          <CatchSequence exception="TestException" id="_3DN" maxerror="0"
+                         name="checkBrowserClosed">
+            <ClientStopper client="$(client)" id="_3DO"/>
+            <ProcessWaiter client="$(client)" id="_3DP"/>
+          </CatchSequence>
+        </TryStep>
+        <CatchSequence exception="ClientNotTerminatedException" id="_3DQ"
+                       maxerror="0"/>
+      </TryStep>
+    </Procedure>
+  </PackageRoot>
+  <ExtraSequence id="_4"/>
+  <WindowList id="_5"/>
+</RootStep>
